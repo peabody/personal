@@ -1,0 +1,420 @@
+;;;;;;;;;;;;;;;;;;;;;; Sam's Emacs Init File ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Time-stamp: <2010-03-15 12:31:48 peabody>
+;; $Id$
+;;
+;; This file is located and may be downloaded at
+;; http://peabody.weeman.org/.emacs.  This is my own emacs init file
+;; that I use for all of my editing in GNU Emacs.  It requires the
+;; emacs packages I use, be sure they're located in "~/elisp".
+;;
+;; Feel free to email comments to peabodyenator AT gmail.com
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Notes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Variables controlling the look of evaluations in *scratch*: 
+;;         eval-expression-print-length
+;;         eval-expression-print-level
+;; Debugging stuff:
+;;         M-x debug-on-entry <function>
+;;         M-x cancel-debug-on-entry <functon>
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Settings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 
+;; Tabs are evil
+(setq-default indent-tabs-mode nil)
+;; Emacs does everything backwards, including scrollbars
+(if window-system (set-scroll-bar-mode 'right))
+;; Write time stamps in files
+(add-hook 'write-file-hooks 'time-stamp)
+;; No splash screen
+(setq inhibit-startup-message t)
+;; Text-mode for most things
+(setq default-major-mode 'text-mode)
+;; Don't add newlines by moving
+(setq next-line-add-newlines nil)
+;; Ask if the file needs a final newline
+(setq require-final-newline 'query)
+;; unconditionally use font-lock-mode (syntax coloring)
+(global-font-lock-mode 1)
+;; scroll a page at a time
+(setq next-screen-context-lines 0)
+;; move screen a line at a time
+(setq scroll-conservatively 4000)
+;; show empty line in the fringe in X
+(setq default-indicate-empty-lines t)
+;; look farther to keep bookmarks
+(setq bookmark-search-size 100)
+
+(defun wrap-in-comments (string)
+  "Wraps and centers a header for Sam's .emacs file
+
+This is relatively pointless function.  I bet it's inefficient too."
+  (interactive "sHeader String: ")
+  (let (beginning-of-sentence)
+    (save-excursion
+      (insert string)
+      (center-line)
+      (beginning-of-line)
+      (forward-word 1)
+      (backward-word 1)
+      (setq beginning-of-sentence (current-column))
+      (beginning-of-line)
+      (insert-char ?\; (1- beginning-of-sentence))
+      (delete-char (1- beginning-of-sentence))
+      (end-of-line nil)
+      (let ((spaceleft (- 72 (current-column))))
+        (insert " ")
+        (insert-char ?\; (1- spaceleft))))))
+
+(fset 'sam-elisp-defun
+   "(defun \C-u\C-xq ()\C-b\C-u\C-xq\C-e\C-m\"\"\C-b\C-i\C-u\C-xq\C-e\C-m\C-i)\C-b(\C-?\C-e\C-xq\C-b(interactive \"\C-u\C-xq")
+(defun sam-sync-emacs ()
+  "This function syncs my .emacs to my account on the SDF.  It
+uses an external shell script to do the work."
+  (interactive)
+  (shell-command "~/bin/sync_.emacs"))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (local-set-key "\C-cd" 'sam-elisp-defun)
+            (local-set-key "\C-cs" 'sam-sync-emacs)))
+
+;; Calendar settings
+(setq user-mail-address "peabodyenator@gmail.com")
+(setq calendar-latitude 38.6)
+(setq calendar-longitude -121.7)
+(setq calendar-time-zone -480)
+(setq calendar-location-name "Davis, CA")
+(setq calendar-standard-time-zone-name "PST")
+(setq calendar-daylight-time-zone-name "PDT")
+
+;; Cross platform stuff, involves windows, my linux machine, and my
+;; shell account on SDF
+(when (not (string= system-type "windows-nt"))
+    ;; The emacs server doesn't seem to work on Windows, not a big
+    ;; deal anyway since drag and drop does the trick nicely. 
+    (server-start)
+    (setenv "EDITOR" "emacsclient")
+    (if (not (equal
+              (shell-command-to-string "hostname")
+              "peabody.is-a-geek.org\n"))
+        (when (not window-system)
+          ;; allows editing via a shell command
+          ;; run /usr/pkg/share/emacs/21.4/etc/emacs.bash
+          (add-hook 'suspend-hook 'resume-suspend-hook)
+          (add-hook 'suspend-resume-hook 'resume-process-args)
+          (menu-bar-mode nil))))
+
+;; Convenient for performing macro wrap regions.
+(defun switch-if-bigger (beg end)
+  "Testing this function"
+  (interactive "r")
+  (when (> (point) beg)
+    (push-mark (point))
+    (goto-char beg)))
+(global-set-key "\C-xX" 'switch-if-bigger)
+
+;; From the emacs wiki page KeyboardMacros.
+(defun my-macro-query (arg)
+  "Prompt for input using minibuffer during kbd macro execution.
+    With prefix argument, allows you to select what prompt string
+    to use.  If the input is non-empty, it is inserted at point."
+  (interactive "P")
+  (let* ((query (lambda () (kbd-macro-query t)))
+         (prompt (if arg (read-from-minibuffer "PROMPT: ") "Input: "))
+         (input (unwind-protect
+                    (progn
+                      (add-hook 'minibuffer-setup-hook query)
+                      (read-from-minibuffer prompt))
+                  (remove-hook 'minibuffer-setup-hook query))))
+    (unless (string= "" input) (insert input))))
+(global-set-key "\C-xQ" 'my-macro-query)
+
+;; create tags from within emacs
+(defun create-tags-c (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (eshell-command 
+   (format "find %s -type f -name *.[ch] | etags -" dir-name)))
+(global-set-key "\C-ct" 'create-tags-c)
+
+;; Tramp stuff, still tinkering
+;; (setq shell-prompt-pattern
+;; "^[^#$%>\n]*[#$%> ]*")
+;; (setq tramp-password-prompt-regexp "^.*\\([pP]assword\\|passphrase\\).*: *")
+
+;; User info
+(setq user-mail-address (concat "peabodyenator"   ; no spam!
+                                "@" "gmail.com"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Packages ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Balanced parenthesis stuff
+(autoload 'balanced-on "balanced" "Parenthesis Balancing" t)
+;; psgml stuff.  this packages wins the prize for most useful package
+;; that is the most frickin finicky
+(autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
+(autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+(add-to-list 'auto-mode-alist '("\\.[Hh][Tt][Mm][Ll]?$" . sgml-mode))
+(setq sgml-set-face t)
+(setq sgml-auto-activate-dtd t)
+(setq sgml-indent-data t)
+
+;; Fixes flyspell mode problems with macros in GNU Emacs 21
+;; See Newsgroup discussion
+;; http://groups.google.de/group/comp.emacs/browse_thread/thread/38b26a94b4a6f4f9/d9397112832faeb6?hl=en
+(defadvice call-last-kbd-macro (around ulmi-fix-insert-bug activate)
+  "Locally set flyspell-delay for macros"
+  (let ((flyspell-delay 0))
+    ad-do-it))
+;; Menu magic for sgml mode
+;; see: http://www.emacswiki.org/cgi-bin/wiki/PsgmlMode
+; Define a trivial function to bind the sgml-tags-menu to psgml's
+; local key map.
+; (A Lambda might do as well.)
+; Note the down-mouse-3 action here, it must be used instead just
+; mouse-3 to
+; avoid conflicts with Emacs' default binding of down-mouse-3. If
+; you want to
+; use mouse-3 instead, you'll need to unset down-mouse-3 first.
+(defun go-bind-markup-menu-to-mouse3 ()
+        (define-key sgml-mode-map [(down-mouse-3)]
+          'sgml-tags-menu))
+
+;; My functions
+(defun sam-sgml-lt ()
+  (interactive)
+  (insert "&lt;"))
+(defun sam-sgml-gt ()
+  (interactive)
+  (insert "&gt;"))
+(add-hook 'sgml-mode-hook (lambda ()
+                            (local-set-key "<" 'sam-sgml-lt)
+                            (local-set-key ">" 'sam-sgml-gt)))
+
+;
+; change key binding whenever psgml mode is invoked
+(add-hook 'sgml-mode-hook 'go-bind-markup-menu-to-mouse3)
+
+;; use hippie exapand instead of just the dynamic abbrevation
+;; expansion
+(eval-after-load "dabbrev" '(defalias 'dabbrev-expand 'hippie-expand))
+;; Generic syntax color highlighting for lots of config type files
+(require 'generic-x)
+;; Paren matching color highlighter
+(require 'mic-paren)
+(paren-activate)
+;; Web browser launcher
+(require 'browse-url)
+;; Use c perl-mode instead
+(defalias 'perl-mode 'cperl-mode)
+;; Require Trap
+(require 'tramp)
+;; Set dabbrev to a keyboard shortcut in case hippie expand becomes annoying.
+(fset 'sam-dabbrev-shortcut
+   "\C-u6\257")
+(global-set-key "\C-ce" 'sam-dabbrev-shortcut)
+;; Autoinsert templates
+(require 'autoinsert)
+(add-hook 'find-file-hooks 'auto-insert)
+;; css-mode
+;; this particular css-mode needs it
+;; (require 'css-mode)
+(add-to-list 'auto-mode-alist '("\\.[cC][sS][sS]$" . css-mode))
+;; Load the desktop (what we were working on previously)
+(if (fboundp 'desktop-save-mode)
+    ;; Latest emacsen, use desktop save mode
+    (desktop-save-mode 1)
+  ;; Older Emacsen, use the old method, don't forget to run a M-x
+  ;; desktop-save for the first time
+  (desktop-load-default)
+  (desktop-read))
+
+;; Dired ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Dired Macros
+(fset 'sam-dired-other-window-view
+   [?o ?\M-x ?v ?i ?e ?w ?- ?m return])
+;; Dired extensions
+(add-hook 'dired-load-hook (lambda () (load "dired-x")))
+;; Dired Hooks
+(add-hook 'dired-hook
+          (lambda ()
+            (local-set-key "\C-co" 'sam-dired-other-window-view)
+	    (setq dired-omit-files t)))
+
+;; Shell ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'shell-mode-hook
+          (lambda ()
+            ;; Emacs 21 convenience, Emacs 22 fixes this by catching
+            ;; password prompts
+            (local-set-key "\C-ci" 'send-invisible)))
+
+;; C Common ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; C macros
+(fset 'sam-c-declare-function
+   [?\C-x ?q ?  ?\C-x ?q ?  ?( ?\C-x ?q ?) return ?{ return return ?} ?\C-p tab])
+(fset 'sam-c-quick-declare-function
+   [?i ?n ?t ?  ?f ?u ?n ?c ?  ?( ?i ?n ?t ?  ?a ?r ?g ?) return ?{ return return ?} up tab])
+(fset 'sam-c-if-statement
+   [?i ?f ?  ?( ?\C-x ?q ?) return ?{ return return ?} up tab])
+(fset 'sam-c-start-block
+   [?  ?{ return return ?} ?\C-p])
+
+;; c-mode-common-hook
+(setq c-mode-common-hook
+      (lambda ()
+        ;; Basic offset
+        (setq c-basic-offset 4)
+        ;; Don't use tabs for indenting
+        (setq-default indent-tabs-mode nil)
+        (local-set-key "\M-\C-a" 'c-beginning-of-defun)
+        (local-set-key "\M-\C-e" 'c-end-of-defun)
+        (local-set-key "\C-c{" 'sam-c-start-block)
+        (local-set-key "\C-cf" 'sam-c-declare-function)
+        (local-set-key "\C-ci" 'sam-c-if-statement)
+        ;; hanging braces config
+        (add-to-list 'c-hanging-braces-alist '(class-open . (after)))
+        (add-to-list 'c-hanging-braces-alist '(defun-open . (after)))
+        (add-to-list 'c-hanging-braces-alist '(substatement-open . (after)))))
+
+
+;; Text ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Text hooks
+(add-hook 'text-mode-hook
+          (lambda ()
+            (flyspell-mode)
+            (local-set-key "\M-[TAB]" 'ispell-complete-word)
+            (turn-on-auto-fill)
+            (abbrev-mode 1)))
+
+;; Python ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; python completion, problematic thing
+;(autoload 'py-complete-init "py-complete")
+;; (require 'py-complete)
+;; (py-shell)
+;; (py-complete-init)
+;; (py-complete-define-python)
+
+;; Python Macros
+;; wxPython Panel Subclass Macro
+(fset 'sam-py-panel
+   "class \C-xq(wx.Panel):\C-mdef __init(\C-?__(self, *args, **kwargs):\C-mwx.Panel.__init__(self, *args, **kwargs)\C-mself.sizer=wx.BoxSizer(wx.HORIZONTAL)\C-mself.SetSizer(self.sizer)\C-m")
+;; Python hooks
+(add-hook 'python-mode-hook (lambda ()
+			      (setq indent-tabs-mode nil)
+			      (local-set-key "\C-cp" 'sam-py-panel)
+                              (local-set-key "\C-m" 'newline-and-indent)
+                              (local-set-key "\C-j" 'newline)
+                              (abbrev-mode 1)))
+
+;; Misc ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Make scripts executable
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+;;;;;;;;;;;;;;;;;;;;;;;; Default Minor Modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; use winner-mode to cycle through window layouts with C-x <right>
+;; and C-x <left>
+(winner-mode 1)
+;; keep track of recent files
+(recentf-mode 1)
+;; Highlight enclosing parenthesis
+(show-paren-mode 1)
+;; Interactive auto-completion while switching buffers
+(iswitchb-mode 1)
+;; display the current function in the mode-line.
+(which-function-mode 0)
+;; icomplete-mode, can't live without this
+(icomplete-mode 1)
+
+;; Stefan Monnier <foo at acm.org>. It is the opposite of 
+;; fill-paragraph. Takes a multi-line paragraph and makes 
+;; it into a single line of text.
+(defun unfill-paragraph ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+(global-set-key "\C-cq" 'unfill-paragraph)
+
+(defun sam-expand-window ()
+  "Expands the current window by 8 lines"
+  (interactive)
+  (enlarge-window 8))
+(global-set-key "\C-cx" 'sam-expand-window)
+
+;; Read and find local project macros
+(fset 'sam-find-macros
+   [?\C-x ?\C-f ?. ?e ?m ?a ?c ?l backspace backspace backspace backspace backspace ?m ?a ?c ?r ?o ?s ?. ?e ?l return])
+(global-set-key "\C-cM" 'sam-find-macros)
+(defun sam-read-macros ()
+  "checks for .macros.el in the current folder and reads it"
+  (interactive)
+  (when (file-exists-p ".macros.el")
+    (load-file ".macros.el")))
+(global-set-key "\C-cm" 'sam-read-macros)
+
+;; vi like paren matching
+(defun goto-match-paren (arg)
+  "Go to the matching parenthesis if on parenthesis, otherwise insert %.
+vi style of % jumping to matching brace."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
+
+;; bind it
+(global-set-key "\C-c%" 'goto-match-paren)
+
+
+(defun c-indent-exp (&optional shutup-p)
+  "Indent each line in the balanced expression following point syntactically.
+If optional SHUTUP-P is non-nil, no errors are signalled if no
+balanced expression is found."
+  (interactive "*P")
+  (let ((here (point-marker))
+	end)
+    (set-marker-insertion-type here t)
+    (unwind-protect
+	(let ((start (save-restriction
+		       ;; Find the closest following open paren that
+		       ;; ends on another line.
+		       (narrow-to-region (point-min) (c-point 'eol))
+		       (let (beg (end (point)))
+			 (while (and (setq beg (c-down-list-forward end))
+				     (setq end (c-up-list-forward beg))))
+			 (and beg
+			      (eq (char-syntax (char-before beg)) ?\()
+			      (1- beg))))))
+	  ;; sanity check
+	  (if (not start)
+	     (unless shutup-p
+	       (error "Cannot find start of balanced expression to indent"))
+	    (goto-char start)
+	    (setq end (c-safe (scan-sexps (point) 1)))
+	    (if (not end)
+		(unless shutup-p
+		  (error "Cannot find end of balanced expression to indent"))
+	      (forward-line)
+	      (if (< (point) end)
+		  (c-indent-region (point) end)))))
+      (goto-char here)
+      (set-marker here nil))))
+
+;; Global key bindings
+(global-set-key [f5] 'compile)
+(global-set-key [f6] 'visit-tags-table)
+(global-set-key [f7] 'dired)
+(global-set-key [f8] 'dired-omit-toggle)
+(global-set-key [f9] 'add-change-log-entry-other-window)
+(global-set-key [f12] 'make-frame)
+(global-set-key "\C-cf" 'find-file-at-point)
+(global-set-key "\C-cl" 'local-set-key)
+
+;; partial completion
+;;(partial-completion-mode 1)
+
+;; (eval-after-load "outline" '(require 'foldout))
