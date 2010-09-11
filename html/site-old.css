@@ -1,0 +1,91 @@
+/* main colors: #6f604c #e3d6c7 */ 
+BODY {
+	FONT-FAMILY: verdana,tahoma,sans-serif;
+	FONT-SIZE: 13px; 
+	background:#ffffff;
+}
+img{
+	border:0px;
+}
+A:visited {
+	COLOR: #6f604c;
+	text-decoration: none;
+}
+A:link {
+	COLOR: #6f604c;
+	text-decoration: none;
+}
+A:hover {
+	COLOR: #e3d6c7;
+	text-decoration: none;
+}
+
+.main{
+	text-align: left;
+	width:775px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.logo{
+	width:675px;
+	float:left;
+	text-align:left;
+	color:#6f604c;
+	font-weight:bold;
+	font-size:45px;
+}
+.menu{
+	width:150px;
+	float:right;
+}
+.content{
+	width:620px;
+	float:left;
+}
+.where{
+	text-align:left;
+	width:620px;
+	color:#6f604c;
+	float:left;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size:15;
+	border-bottom:1px dashed #6f604c;
+}
+.underlogo{
+	width:775px;
+	background:#6f604c;
+	height:10px;
+	FONT-SIZE: 1px; 
+	clear:both;
+}
+.delimiter{
+	height:5px;
+	FONT-SIZE: 1px; 
+}
+.supportbox{
+	text-align:center;
+	width:150px;
+}
+.banner{
+	margin-bottom:5px;
+}
+.menuitem{
+	font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-bottom: 8px;
+}
+.menuline{
+	width:150px;
+	background:#6f604c;
+	height:5px;
+	FONT-SIZE: 1px; 
+}
+.footer{
+	clear:both;
+	font-size:10px;
+}
+.footertext{
+	text-align:right;
+}

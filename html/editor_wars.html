@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+  <title>Editor Wars</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=us-ascii">
+  <meta name="generator" content="GNU Emacs">
+  <meta name="author" content="Sam Peterson">
+  <meta name="keywords" content=
+  "Unix Linux Emacs Vim Python Perl PHP Web">
+  <meta name="description" content="Sam Peterson's Random Notes">
+  <link rel="stylesheet" type="text/css" href="/site.css">
+</head>
+
+<body>
+  <div class="document">
+    <h1>The Editor Wars</h1>
+
+    <p>This page is my own take on the so-called "Editor Wars". For
+    those who don't know what the Editor Wars are, here's an
+    explanation. Unix geeks have historically had one very
+    important job: editing text. Unix was originally devised as a
+    system to help with text processing (among it's other duties)
+    and the most important tool on Unix became the text editor as a
+    consequence. Among text editors, two factions emerged: vi and
+    Emacs.</p>
+
+    <p>Vi was the first visual text editor available on Unix. It
+    was written by Bill Joy in 1976 for Berkeley Unix and became
+    the standard text editor shipped with System V Unix. Several
+    free clones of vi were made over the years and today's crowned
+    champion is Vim, an acronym for Vi IMproved.</p>
+
+    <p>Emacs started life as a bunch of text macros for the MIT AI
+    lab's text editor TECO. Several evolutions of Emacs popped up
+    on different machines later on, including Unix, all written by
+    different people. The most popular version today is GNU
+    Emacs.</p>
+
+    <p>To get an idea of how heated the debate gets, here are a few
+    quotes:</p>
+
+    <blockquote>
+      #Need to find some good quotes.
+    </blockquote>
+
+    <p>Why all the hysteria over text editors? My theory is that
+    it's largely due to the fact that learning these programs is
+    much like learning a musical instrument. Namely, it takes a lot
+    of time and practice. Once you've spent the time to learn one,
+    having to learn where the other editor has hidden all its
+    features is an exercise in frustration. Especially when they
+    share so many features in common:</p>
+
+    <ul>
+      <li>Multi-level Undo</li>
+
+      <li>Advanced search and replace with regular expressions</li>
+
+      <li>"Delete then paste" functionality (kill/yank vs
+      delete/yank/put)</li>
+
+      <li>Registers which save text and file positions to be called
+      later</li>
+
+      <li>Syntax aware commands for editing source code</li>
+
+      <li>Syntax color highlighting</li>
+
+      <li>Fast navigation via the keyboard</li>
+
+      <li>Ability to work with multiple files</li>
+
+      <li>Ability to compile source code and check syntax
+      errors</li>
+
+      <li>Ability to compose documentation such as man pages and
+      texinfo easily</li>
+
+      <li>Ability to reduce typing via shortcuts (abbreviations,
+      and keyboard macros)</li>
+
+      <li>Complete user customizability</li>
+    </ul>
+
+    <p>Seeing as there is a dramatic overlap in functionality, one
+    can perhaps see how dogmatic arguments came about surrounding
+    these softwares. Since they solve the same kinds of tasks, they
+    do things slightly differently, and as the proverb says "It's
+    the differences that make things interesting."</p>
+
+    <h1>Contrasting the two</h1>
+
+    <h2>Modal vs Modeless Editing</h2>
+
+    <p>The most pronounced philosophical difference between the two
+    editors starts with how text is entered into them. Vi is a
+    modal editor. Emacs is modeless. Most editors in the world
+    today are Modeless. What this means is that the editor is
+    designed to enter text right away. As soon as the user types on
+    the keyboard, he or she is entering text into the document at
+    hand. To give the editor commands, modifier keys or pointing
+    devices, such as the control button and a mouse, are applied to
+    a key to send a command. Modal editing, on the other hand,
+    means that the editor switches between the state of inserting
+    text and taking commands. This means that buttons on the
+    keyboard normally used for entering text are occupied for
+    instructing the editor to do things in command mode.</p>
+
+    <p>There are merits to both approaches. Modeless editing is
+    more intuitive, which is probably why it is the style of
+    editing employed by almost every text editing application,
+    professional or otherwise, on every computer platform in
+    existence. It's disadvantages are that its keyboard shortcuts
+    are usually much longer and harder to memorize and aren't typed
+    as quickly. Modal editing, on the other hand, has a learning
+    curve and takes work. However, once it's mastered, editing is
+    extremely quick and the commands are easier to memorize.</p>
+
+    <p>Having mastered both Vim and Emacs, which do I prefer? That
+    depends on the task at hand. If I have to compose a document or
+    start a document from scratch I prefer the modeless style of
+    editing. If most of your time will be spent inserting new text,
+    then many of the speed benefits of modal editing are bound by
+    your thoughts and typing, not the keyboard commands. However,
+    if I have to make vast changes to a document which will mostly
+    consist of rearranging text or changing a few lines of text, I
+    prefer modal.</p>
+
+    <h1>Size Matters</h1>
+
+    <p>The weight and memory footprint of the editors has also been
+    an issue of debate.</p>
+
+    <h1>Subtle Differences</h1>
+
+    <p>Both editors have registers. Both editors store their
+    deletions into structures that can paste them back. Vim does it
+    with numbered registers, Emacs does it with the kill-ring. Vim
+    stores cursor locations in registers. Emacs has the
+    mark-ring.</p>
+
+    <h1>Practical Considerations</h1>
+
+    <p>Other than design considerations, there are practical
+    considerations to take into account. For example, Emacs has a
+    long startup time. This isn't considered a problem by most of
+    its users because the Emacs work philosophy is that the user
+    should launch it once and keep it running, using it to perform
+    all of their work. I do this. When I first sit down at a Unix
+    machine, and sometimes a Windows and Macintosh machine to do
+    work, I usually start Emacs and keep it running for the
+    duration of my time spent on that machine.</p>
+
+    <p>There is a problem with this, however. Unix system
+    administration requires obtaining the administrative privilege,
+    or root account, to perform any work. If Emacs is started under
+    a normal user account, there isn't a practical way to obtain
+    the root account privilege.</p>
+
+    <p>One could simply use Emacs under their own user account for
+    personal work, and launch a separate Emacs when needed..
+    However, this is undesirable for the reasons stated above; it
+    takes too long to get Emacs up and running.</p>
+
+    <p>One could simply launch Emacs as root to begin with, but
+    this has several problems with it. First of all, a user's own
+    personal work should be under their own user account, but if
+    they launch Emacs as root, any files it creates will be under
+    the root user. Secondly, Emacs was a program never built with
+    security in mind. A stock Emacs without user customizations is
+    fairly secure, but who knows how many of the elisp packages and
+    customizations have been scrutinized for security? Lastly,
+    running an interactive user program under the root user is
+    extremely dangerous, as root is God under Unix and any fatal,
+    system-ending mistake will be permitted under the account
+    without any confirmation.</p>
+
+    <p>A solution to this is to run two different Emacs processes,
+    one under the root account, and one under the normal user. This
+    has problems as well. It would be fairly easy to confuse the
+    two, and certain Emacs packages run the risk of conflicting
+    with each other. It also uses twice the memory, and Emacs is
+    already heavy enough as it is.</p>
+
+    <p>Yet another solution to this thorny problem is to use one of
+    the remote file access packages of Emacs. The default of Emacs
+    21 is ange-ftp. This package permits accessing files on ftp
+    servers over the Internet. If one were to run an ftp server
+    which permitted a root login through the localhost, then the
+    ftp services can be used as a clever proxy to root privileges
+    on the system. However, this is extremely unsafe. Even if one
+    limits the root login to being available only through the
+    loopback device, it's asking for trouble. It also requires that
+    the root account be enabled, which violates the default
+    security policies of distros like Ubuntu.</p>
+
+    <p>Perhaps the best solution found so far is the Tramp package.
+    Tramp is a new remote file access package which will come
+    bundled with Emacs 22. For now it can be downloaded off the
+    Internet. Tramp has a "sudo" method, which allows tramp to talk
+    to sudo to read and write files. This requires that the
+    administrator have access through sudo, but this is a very
+    common setup these days (and a good one as it provides an audit
+    trail for root executed commands).</p>
+
+    <p>Vim, of course, has historically never had this problem as
+    users typically launch it from a shell with sudo or from a su
+    login to get their root privileges. In other words, it's not a
+    problem in that it doesn't conflict with vim's typical usage
+    pattern.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for NetBSD (vers 1st October 2003), see www.w3.org">
+
+  <title>Installing Unix Software in Your Local Shell Account</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=us-ascii">
+  <meta name="generator" content="GNU Emacs">
+  <meta name="author" content="Sam Peterson">
+  <meta name="keywords" content=
+  "Unix Linux Emacs Vim Python Perl PHP Web">
+  <meta name="description" content="Sam Peterson's Random Notes">
+  <link rel="stylesheet" type="text/css" href="/site.css">
+</head>
+
+<body>
+  <div class="document">
+    <h1>Shell Accounts and Software</h1>
+    <p>So you've got a shell account on someone's machine but you don't
+    have root access and they don't have the software installed that you
+    need?  What can you do?  Simple.  Provided you have the diskspace,
+    you can install software into your user folder.  Here's how.</p> 
+
+    <h3>Step 1</h3>
+
+    <p>Download and extract the tar ball somewhere.  If the unix shell
+    account you're using has your home folder mounted via nfs, it's nicer
+    to actually extract it into /tmp.</p>
+
+    <h3>Step 2</h3>
+
+    <p>Configure the package so that it will install into your home
+    folder.  If the source package uses the GNU autoconf tools you
+    should be able to do this from the configure script <tt>./configure
+      --prefix=/path/to/folder/to/install</tt></p>
+
+    <h3>Step 3</h3>
+
+    <p><tt>make && make install</tt>.  If everything went smoothly,
+    you should now be able to change your environment variables.</p>
+
+    <h3>Step 4</h3>
+
+    <p>Change your environment varibles.  Set your PATH so that the bin
+    folder of the folder you installed to is accessible.  If your
+    software installed a shared library, set LD_LIBRARY_PATH so that it
+    includes the /lib/&lt;softwarename> folder.  This should do it, you
+    can run the new software.</p>
+
+</body>
+</html>

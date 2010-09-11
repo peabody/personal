@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for NetBSD (vers 1 September 2005), see www.w3.org">
+
+  <title>Sam's Regular Expression Page</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+  <meta name="generator" content="GNU Emacs">
+  <meta name="author" content="Sam Peterson">
+  <meta name="keywords" content=
+  "Unix Linux Emacs Vim Python Perl PHP Web">
+  <meta name="description" content="Sam Peterson's Random Notes">
+  <link rel="stylesheet" type="text/css" href="/site.css">
+</head>
+
+<body>
+  <div class="document">
+    <h1>Regular Expressions</h1>
+
+    <p>Regular Expressions are so much trouble in Unix that I wrote
+    this page just to talk about them. Namely I show what they are,
+    how many different versions there are, and how to deal with
+    them.</p>
+
+    <p>Regular Expressions can be used for pattern matching of strings.
+    In particular, they're limited to recognizing regular grammars.  I
+    don't use the word text because they can be used for any kind of
+    binary string (though they are mostly used for text). The killer-app
+    of regular expressions is their ability to extract information from
+    somewhat arbitrarily structured data, such as the text on a web
+    page.</p>
+
+    <p>They have advantages and disadvantages. Jamie Zawinski has a
+    famous quote regarding regular expressions <em>Some people, when
+      they have a problem, think "I know! I'll use regular expressions!"
+      Now they have two problems.</em> The immortal truth behind this
+    quote is that regular expressions are used far more often than they
+    should be. People have written parsers in regular expressions.
+    Don't do that, it's a terrible idea.  You want to use an actual
+    parser for that, one based on a BNF grammar.</p>
+
+    <p>Regular expressions are also typically inefficient. Regular
+    expression searches are an exhaustive search. In algorithmic terms
+    this means that they're a brute force kludge. Put simply, the
+    algorithm scans stupidly until it finds a solution and if one isn't
+    found, it backtracks and tries other options until a solution is
+    found or all choices have been exhausted</p>
+
+    <p>That said however, regular expressions are the best tool for
+    the job sometimes. In particular, they're used like crazy in
+    text editors. Any text editor that has syntax
+    color-highlighting probably uses regular expressions
+    extensively (I know for a fact that both Vim and Emacs use
+    regular expressions to figure out how the text in a program
+    should be colored). This is because it is a lot more efficient
+    to use regular expressions around a neighborhood of lines
+    rather than to completely re-parse a document from scratch each
+    time a change is made to it.</p>
+
+    <p>The trouble with regular expressions that this article
+    intends to discuss is their arbitrary syntax. I grew up on Perl
+    regular expressions when I was 18 and I loved them. Before
+    Perl, the only programming languages I had any experience with
+    were BASIC, C++, and JavaScript. The ease with which you could
+    describe the structure of textual data for extraction purposes
+    was magical to me. I'd never seen something so powerful before.
+    They were the reason I loved Perl as much as I did in my early
+    days. However, once I began to venture past Perl as the only
+    Unix tool I was familiar with, I began to realize that the
+    state of standardized regular expressions was a mess. I was
+    horrified.</p>
+
+    <p>There are three camps of regular expressions: <strong>Perl's
+    regular expressions</strong> (used by quite a few programs
+    including python and apache; apache even uses Perl's exact
+    implementation if it's compiled with it), <strong>extended
+    regular expressions</strong> (which are similar to Perl's but
+    often don't have all of its functionality) and <strong>basic
+    regular expressions</strong> which are a very old kind of
+    regular expressions used in the early Unix days (their
+    functionality is extremely limited and they are a true
+    nightmare to be stuck with. However, they're the default on
+    utilities such as grep and sed. Thankfully, there are options
+    to use more powerful regular expressions with these tools on
+    most implementations today).</p>
+
+    <p>If that wasn't bad enough, each individual program's
+    implementation often has subtle quirks to its syntax.</p>
+
+    <h1>Metacharacters</h1>
+
+    <p>There are different metacharacters for different regular
+    expression implementations. Here are the lists:</p>
+
+    <h2>Perl and extended regular expressions</h2>
+
+    <p>?+*|&amp;{}[]^$()</p>
+
+    <h2>Basic regular expressions</h2>
+
+    <p>*\|\&amp;\{\}[]^$\(\)</p>
+
+    <p>As can be seen, all metacharacters need to be backslash
+    escaped with the exception of *,^, $, [, \.</p>
+
+    <h1>Character Classes</h1>
+
+    <p>Character classes differ greatly between regular expression
+    implementations. Let us start with basic regular
+    expressions...they're aren't any. There, that was easy.</p>
+
+    <p>Extended regular expressions introduced the idea of custom
+    character classes. Here's a list of them (these's aren't available in Vim
+    or Emacs):</p>
+
+    <pre>
+     [[:alnum:]]  - [A-Za-z0-9]     Alphanumeric characters
+     [[:alpha:]]  - [A-Za-z]        Alphabetic characters
+     [[:blank:]]  - [ \x09]         Space or tab characters only
+     [[:cntrl:]]  - [\x00-\x19\x7F] Control characters
+     [[:digit:]]  - [0-9]           Numeric characters
+     [[:graph:]]  - [!-~]           Printable and visible characters
+     [[:lower:]]  - [a-z]           Lower-case alphabetic characters
+     [[:print:]]  - [ -~]           Printable (non-Control) characters
+     [[:punct:]]  - [!-/:-@[-`{-~]  Punctuation characters
+     [[:space:]]  - [ \t\v\f]       All whitespace chars
+     [[:upper:]]  - [A-Z]           Upper-case alphabetic characters
+     [[:xdigit:]] - [0-9a-fA-F]     Hexadecimal digit characters
+    
+</pre>
+
+    <p>Then there's Perl style character classes. Note: all of
+    these <B>are</B> available in Vim and Emacs regular expressions.</p>
+
+    <ul>
+      <li>\w any word character (depends on locale setting,
+      available in egrep)</li>
+
+      <li>\W any non-word character (depends on locale setting,
+      available in egrep)</li>
+
+      <li>\d any digit</li>
+
+      <li>\D any non-digit</li>
+
+      <li>\b any word boundary</li>
+
+      <li>\s any whitespace character</li>
+
+      <li>\S any non-whitespace character</li>
+    </ul>
+
+    <h1>The replacement (that "s" thingy)</h1>
+
+    <p>There are some important details to know about the
+    replacement side of the pattern. Almost everything is included
+    literally, so you don't need to worry about many
+    metacharacters. Only &amp; and backreferences of the form
+    \DIGIT are things to worry about. If you need to include an
+    &amp; then make sure to backslash escape it. If you need to
+    include a literal \DIGIT form, us a double backslash.</p>
+
+    <h1>Programs that use regular expressions</h1>
+
+    <ul>
+      <li>grep (basic per default, egrep uses extended re's)</li>
+
+      <li>find (depends on Unix version.  Basic re in BSD, Emacs re on
+      GNU/Linux, which is kind of a weird melding of basic and extended.
+      However, in both cases, a full match is done, so the pattern space must
+      be designed to match the entire filename)</li>
+
+      <li>sed (basic per default, option to use extended re's in
+      certain versions, use -E flag on bsd, -r flag on GNU/Linux)</li>
+
+      <li>awk (extended re's)</li>
+
+      <li>vi/vim (normal vi only has basic re's, vim has a
+      variation of Perl re, but metacharacters behave like basic
+      re's)</li>
+
+      <li>Emacs (metacharacters need to be escaped like basic re's,
+      however, there are Perl-like character classes).</li>
+
+      <li>apache (Perl re's if compiled in, basic otherwise)</li>
+    </ul>
+
+    <h1>Programming languages that use regular expressions
+    frequently</h1>
+
+    <p>Note: I suppose awk is considered a programming language by
+    some, but I'm leaving it out of this list since it was listed
+    above. These all pretty much use Perl re's with some of their
+    own variations.</p>
+
+    <ul>
+      <li>Perl</li>
+
+      <li>Python</li>
+
+      <li>PHP</li>
+
+      <li>Ruby</li>
+    </ul>
+  </div>
+</body>
+</html>

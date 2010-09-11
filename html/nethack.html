@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-type" content=
+  "text/html; charset=us-ascii">
+  <meta name="generator" content="GNU Emacs">
+  <meta name="author" content="Sam Peterson">
+  <meta name="keywords" content=
+  "Unix Linux Emacs Python Perl PHP Web">
+  <meta name="description" content="Sam Peterson's Random Notes">
+  <style type="text/css">
+  body {background-color: black;
+      color: white;
+      font-family: courier new,monospace;
+      font-size: 16pt;}
+  pre {font-size: 10pt;}
+  </style>
+
+  <title>Nethack Patches</title>
+</head>
+
+<body>
+  <h1>Nethack Goodies</h1>
+  <pre>
+
+
+                                        -----
+                                        |...-##########   ------
+                                        |...|    -----####......#
+                                      ##-.^.|    |...-#   |....|#
+                           ------     # |...|    |...|#  #-....|#
+                           |....-###### |...|    --|--### ---.--#
+                         ##-....|       --.--      #  # #    ## #
+                         # |....|         #####  ###  # ###   # #
+      --------         ### |....|             #  #    #   #   # #
+      |.@....|         #   |....|             ####    #   ### # #
+      |.......###00######  ------              ##     #     # # #
+      |......|       #                    ########    #     ### ###
+      |......-########                  --.------.--  #       #   # --------
+      |......|                          |..........|  #       ### ##.......|
+      |......|                          |..........|  # ------.-#   |......|
+      --------                          |..........|####......&lt;-####-......|
+                                        |.....&gt;.....# # |......|  # |......|
+                                        ------------  ##.......|  ##-......|
+                                                        --------    --------
+
+Badboy the Digger          St:12 Dx:11 Co:13 In:15 Wi:15 Ch:9  Lawful
+Dlvl:1  $:40 HP:18(18) Pw:9(9) AC:9  Xp:2/32 T:449 Satiated
+</pre>
+
+  <p>I love nethack, bitch of a game though it may be. This is my
+  list of patches I use as well as my installation instructions on
+  different platforms.</p>
+
+  <h2>Patches</h2>
+
+  <p>Here are several patches I use with my nethack. None of the
+  patches effects the game balance, they simply provide a better
+  user interface experience on terminals, which is the way Ghad
+  intended to play nethack.</p>
+
+  <ul>
+    <li>hpmon -- monitors your hit points by coloring them green,
+    yellow or red.</li>
+
+    <li>menucolors -- highlights menu items based on regular
+    expressions. Commonly used to highlight items in your inventory
+    based on their B/C/U status.</li>
+
+    <li>my unified diff</li>
+  </ul>
+
+  <h2>Mac OS X</h2>
+
+  <p>Mac OS X seems to have the most involved installation
+  instructions. Most of this seems related to the fact that Mac OS
+  X doesn't come with GNU regex and I like to use the menucolors
+  and hpmon patches.</p>
+
+  <ul>
+    <li><b>Unzip</b></li>
+
+    <li><b>cd nethack-x.x.x; run patches (patch -p0 &lt;
+    ../patchname)</b></li>
+
+    <li><b>Edit config.h. Change the following.</b></li>
+  </ul>
+
+  <p>There are patches here to automate the procedure.</p>
+
+  <h2>Linux</h2>
+
+  <h2>Windows</h2>
+
+  <h2>Acronyms</h2>
+
+  <p>This section is stolen verbatim from the r.g.r.n faq.</p>
+
+  <p>YAAP: Yet Another Ascension Post<br>
+  YAFAP: Yet Another First Ascension Post.<br>
+  Someone has completed a game of NetHack (possibly for the first
+  time) and wants to brag/show off. Finishing NetHack is not a
+  trivial accomplishment, so some bragging is probably called for
+  (see 2.8).</p>
+
+  <p>YASD: Yet Another Stupid Death.<br>
+  YAAD: Yet Another Annoying Death.<br>
+  Get used to this phenomenon if you're going to play NetHack.
+  Someone has died in a particularly amusing or annoying way, and
+  wants pity for his or her stupidity or a shoulder to cry on.</p>
+
+  <p>YAFM: Yet Another Funny Message.<br>
+  YAFMC: Yet Another Funny Message Combination<br>
+  YAFP: Yet Another Funny Prompt<br>
+  Sometimes, the messages NetHack gives you are amusing, or have a
+  strange juxtaposition of several messages or an odd mix of
+  inventory letters. Someone has found a message or combination
+  that they liked.</p>
+
+  <p>YANI: Yet Another New (Nifty) Idea (Item).<br>
+  Someone has an idea for an improvement or addition to the
+  game.</p>
+
+  <p>DYWYPI?: Do You Want Your Possessions Identified?<br>
+  The first question NetHack asks you if you are killed. Many
+  posters use it as shorthand for "And then the
+  &lt;monster/trap/stupid move/typo&gt; killed me."</p>
+
+  <p>The DevTeam:<br>
+  The DevTeam is the group of programmers responsible for the
+  maintenance and development of NetHack. Remember: The DevTeam
+  Think of Everything! (TDTTOE!)</p>
+
+  <p>The RNG: Random Number Generator -or- Random NetHack God.<br>
+  Every game of NetHack is different, thanks to the effects of the
+  random numbers used in the creation of the dungeon. Sometimes it
+  seems like the random numbers have a malicious will of their own
+  and are therefore personified, as in "The RNG was especially
+  cruel to me today."</p>
+</body>
+</html>
