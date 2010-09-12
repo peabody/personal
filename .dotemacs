@@ -1,13 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;; Sam's Emacs Init File ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Time-stamp: <2010-03-15 12:31:48 peabody>
-;; $Id$
-;;
-;; This file is located and may be downloaded at
-;; http://peabody.weeman.org/.emacs.  This is my own emacs init file
-;; that I use for all of my editing in GNU Emacs.  It requires the
-;; emacs packages I use, be sure they're located in "~/elisp".
-;;
 ;; Feel free to email comments to peabodyenator AT gmail.com
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Notes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -152,20 +144,20 @@ uses an external shell script to do the work."
 (autoload 'balanced-on "balanced" "Parenthesis Balancing" t)
 ;; psgml stuff.  this packages wins the prize for most useful package
 ;; that is the most frickin finicky
-(autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
-(autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
-(add-to-list 'auto-mode-alist '("\\.[Hh][Tt][Mm][Ll]?$" . sgml-mode))
-(setq sgml-set-face t)
-(setq sgml-auto-activate-dtd t)
-(setq sgml-indent-data t)
+;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
+;; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+;; (add-to-list 'auto-mode-alist '("\\.[Hh][Tt][Mm][Ll]?$" . sgml-mode))
+;; (setq sgml-set-face t)
+;; (setq sgml-auto-activate-dtd t)
+;; (setq sgml-indent-data t)
 
 ;; Fixes flyspell mode problems with macros in GNU Emacs 21
 ;; See Newsgroup discussion
 ;; http://groups.google.de/group/comp.emacs/browse_thread/thread/38b26a94b4a6f4f9/d9397112832faeb6?hl=en
-(defadvice call-last-kbd-macro (around ulmi-fix-insert-bug activate)
-  "Locally set flyspell-delay for macros"
-  (let ((flyspell-delay 0))
-    ad-do-it))
+;; (defadvice call-last-kbd-macro (around ulmi-fix-insert-bug activate)
+;;   "Locally set flyspell-delay for macros"
+;;   (let ((flyspell-delay 0))
+;;     ad-do-it))
 ;; Menu magic for sgml mode
 ;; see: http://www.emacswiki.org/cgi-bin/wiki/PsgmlMode
 ; Define a trivial function to bind the sgml-tags-menu to psgml's
@@ -176,9 +168,9 @@ uses an external shell script to do the work."
 ; avoid conflicts with Emacs' default binding of down-mouse-3. If
 ; you want to
 ; use mouse-3 instead, you'll need to unset down-mouse-3 first.
-(defun go-bind-markup-menu-to-mouse3 ()
-        (define-key sgml-mode-map [(down-mouse-3)]
-          'sgml-tags-menu))
+;; (defun go-bind-markup-menu-to-mouse3 ()
+;;         (define-key sgml-mode-map [(down-mouse-3)]
+;;           'sgml-tags-menu))
 
 ;; My functions
 (defun sam-sgml-lt ()
@@ -193,7 +185,7 @@ uses an external shell script to do the work."
 
 ;
 ; change key binding whenever psgml mode is invoked
-(add-hook 'sgml-mode-hook 'go-bind-markup-menu-to-mouse3)
+;; (add-hook 'sgml-mode-hook 'go-bind-markup-menu-to-mouse3)
 
 ;; use hippie exapand instead of just the dynamic abbrevation
 ;; expansion
@@ -201,8 +193,12 @@ uses an external shell script to do the work."
 ;; Generic syntax color highlighting for lots of config type files
 (require 'generic-x)
 ;; Paren matching color highlighter
-(require 'mic-paren)
-(paren-activate)
+(require 'mic-paren "mic-paren.el" t)
+(if (fboundp 'paren-activate)
+    (paren-activate))
+(when (require 'color-theme "color-theme.el" t)
+  (color-theme-initialize)
+  (color-theme-billw))
 ;; Web browser launcher
 (require 'browse-url)
 ;; Use c perl-mode instead
@@ -325,7 +321,7 @@ uses an external shell script to do the work."
 ;; Highlight enclosing parenthesis
 (show-paren-mode 1)
 ;; Interactive auto-completion while switching buffers
-(iswitchb-mode 1)
+(ido-mode 1)
 ;; display the current function in the mode-line.
 (which-function-mode 0)
 ;; icomplete-mode, can't live without this
