@@ -1,19 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html> 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 
   <title>Sam's Homepage</title>
   <meta http-equiv="Content-Type" content=
-  "text/html; charset=us-ascii" />
-  <meta name="generator" content="VIM - Vi IMproved 7.1 (2007 May 12, compiled
-  Dec 28 2007 02:58:48)" />
-  <meta name="author" content="Sam Peterson" />
+  "text/html; charset=utf-8" >
+  <meta name="generator" content="GNU Emacs" >
+  <meta name="author" content="Sam Peterson" >
   <meta name="keywords" content=
-  "Unix Linux Emacs Vim Python Perl PHP Web" />
-  <meta name="description" content="Sam Peterson's Random Notes" />
-  <link rel="stylesheet" type="text/css" href="/site.css" />
+  "Unix Linux Emacs Vim Python Perl PHP Web" >
+  <meta name="description" content="Sam Peterson's Random Notes" >
+  <link rel="stylesheet" type="text/css" href="site.css" >
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="javascript/table_of_contents.js"></script>
+
 </head>
 
 <body>
@@ -21,70 +22,30 @@
     <h1>Sam's Homepage</h1>
 
     <p>This is Sam's (a.k.a. Peabody's) homepage. Send me mail at
-    peabodyenator AT gmail.com. I'm interested in meeting new
-    people, especially those who come by here. I'm surprised anyone
-    would bother. I'll especially love you if you find a grammar or
-    spelling <span style=
-    "text-decoration: line-through">misake</span> mistake (and tell
-    me about it).</p>
+    peabodyenator AT gmail.com.</p>
 
-    <div class="contents">
-      <h2>Table of Contents</h2>
+    <div id="toc"></div>
 
-      <ol>
-        <li><a href="#unix">Unix Notes</a></li>
-
-        <li style="list-style: none">
-          <ol>
-            <li><a href="#subversion">Subversion</a></li>
-
-            <li><a href="#ssh">ssh,scp,ssh-keygen</a></li>
-
-            <li><a href="#rsync">rsync</a></li>
-
-            <li><a href="#wget">wget</a></li>
-
-            <li><a href="#lvm">Linux LVM</a></li>
-
-            <li><a href="#dpkg">dpkg</a></li>
-
-            <li><a href="#emacs">Emacs</a></li>
-          </ol>
-        </li>
-
-        <li><a href="#games">Games</a></li>
-        <!-- Add Contents Here -->
-      </ol>
-    </div>
-
-    <h2>What's Here?</h2>Stuff. I mostly only place pictures,
-    musings, and pointless programs I write. I tire of maintaining
-    links since I write all my html in Emacs. Sorry about the long
-    page.
+    <h2>What's Here?</h2>Stuff. I mostly only place pictures, musings,
+    and pointless programs I write. I tire of maintaining links since
+    I write all my HTML by hand. Sorry about the long page.
 
     <h2>What's New?</h2>
 
-    <p>I got straight A's again at UC Davis (spring quarter 2008)!</p>
-
-    <H2>Old Stuff</H2>
-
-    <p>I finally found a <a href=
-    "http://www-128.ibm.com/developerworks/xml/library/x-emacs/">really
-    good article</a> on configuring Emacs PSGML mode with document
-    type definitions. PSGML mode is what I use to edit this
-    homepage.</p>
+    <p>Playing around with version control software.  I think my
+    favorite so far is <a href="http://git-scm.com/">git</a>.</p>
 
     <H2>Other Pages</H2>
 
     <P>
-    I gruadually add other things when I feel like it.  I have <A
+    I gradually add other things when I feel like it.  I have <A
       HREF="re.html">regular expressions page</A> an <A
       HREF="editor_wars.html">editor wars page</A> and a <A
       HREF="netpbm.html">netpbm</A> page. 
     </P>
 
-    <h2><a name="unix">Sam's Long Random List of Unix
-    Notes</a></h2>
+    <h2>Sam's Long Random List of Unix
+    Notes</h2>
 
     <p>I've used Unicies of various kinds and my trouble is my memory's
     spotty.  So when I come across something in the Unix world I like, I
@@ -95,83 +56,127 @@
     <p>Organization's not my strong point. Good luck readin' this.
     I hope you find it useful.</p>
 
-    <h3 style="clear:both"><a name="shell">Shell Magic</a></h3>
+    <h3 style="clear:both">Shell Magic</h3>
 
-    <p><b>Rename the extension on a group of files</b> -- ls *.ext | while read
+    <p><strong>Rename the extension on a group of files</strong> -- ls *.ext | while read
     item; do mv "$item" `echo '$item' | sed 's/\.ext/.newext/'`; done</p>
 
-    <p><b>Downcase all the filenames in a folder</b> -- ls * | while read item;
-    do mv $item `echo "$item" | sed 's/.*/\L&\E/'`; done</p>
+    <p><strong>Downcase all the filenames in a folder</strong> -- ls * | while read item;
+    do mv $item `echo "$item" | sed 's/.*/\L&amp;\E/'`; done</p>
 
-    <h3 style="clear:both"><a name="subversion">Subversion</a></h3>
+    <div class="versionControl section">
+      <h2 title="click">Version Control</h2>
 
-    <p>I've been trying to move anything I type to version control.
-    It hasn't happened yet though (I'm lazy).</p>
+      <div class="content">
+        <p>I've been trying to move anything I type to version control.
+          It hasn't happened yet though (I'm lazy).</p>
+
+        <h3 style="clear:both">Git</h3>
+
+        <h4>Understanding Git Commit Specifiers</h4>
+
+        Git refers to commits in several ways.  Below are examples.
+
+        <ul>
+          <li><strong>The numbered parent of a commit</strong> --
+          commtid^ or commitid^# for when multiple parents exist
+          (merge point).</li>
+          <li><strong>The chronological parent of a commit</strong>
+          -- commitid~#</li>
+          <li><strong>A range of commits</strong> --
+          commitid1..commitid2 (this does not include commitid1)</li>
+          <li><strong>Symmetric range difference</strong> -- commitid1...commitid2</li>
+        </ul>
+
+        <ul>
+          <li><strong>Creating a repository</strong> -- git init (after
+            cd'ing to the folder.</li>
+          <li><strong>Copying an existing repository</strong> -- git clone
+            &lt;url&gt;</li>
+          <li><strong>Adding files</strong> -- git add filename</li>
+          <li><strong>Committing</strong> -- git commit</li>
+          <li><strong>Checkout a previous revision of a file</strong> --
+            git checkout &lt;commit specifier&gt; &lt;filename
+            path&gt;</li>
+          <li><strong>Remove working directory changes for
+            everything</strong> -- git reset --hard HEAD</li>
+          <li><strong>Remove working directory changes for just a single
+              file</strong> -- git checkout &lt;filename&gt;</li>
+          <li><strong>Unstaging a file with no prior revision</strong>
+          -- git rm --cached &lt;path&gt;
+          <li><strong>Viewing Changes</strong> -- git diff --color</li>
+          <li><strong>Viewing File Statuses</strong> -- git
+          status</li>
+          <li><strong>Viewing a succinct status list</strong> -- git
+            status -s</li>
+          <li><strong>Viewing a succinct status list without
+          untracked files</strong> -- git status -s -uno</strong>
+        </ul>
+
+        <h3 style="clear:both">Subversion</h3>
+
+        <ul>
+          <li><strong>Creating a repository.</strong> -- svnadmin create
+            &lt;folder&gt;</li>
+
+          <li><strong>Importing</strong> -- svn import &lt;files&gt; &lt;url&gt;
+            -m 'message'</li>
+
+          <li><strong>Checkout</strong> -- svn co &lt;url&gt;</li>
+
+          <li><strong>Commit</strong> -- svn ci &lt;files&gt; -m 'message'</li>
+
+          <li><strong>Setting keywords</strong> -- svn propset svn:keywords
+            &lt;keywords&gt; &lt;files&gt;</li>
+      </ul></div>
+    </div>
+    <h3>ssh,scp,ssh-keygen</h3>
 
     <ul>
-      <li><b>Creating a repository.</b> -- svnadmin create
-      &lt;folder&gt;</li>
-
-      <li><b>Importing</b> -- svn import &lt;files&gt; &lt;url&gt;
-      -m 'message'</li>
-
-      <li><b>Checkout</b> -- svn co &lt;url&gt;</li>
-
-      <li><b>Commit</b> -- svn ci &lt;files&gt; -m 'message'</li>
-
-      <li><b>Setting RCS keywords</b> -- svn propset svn:keywords
-      &lt;keywords&gt; &lt;files&gt;</li>
-    </ul>
-
-    <h3><a name="ssh">ssh,scp,ssh-keygen</a></h3>
-
-    <ul>
-      <li><tt><b>ssh -L &lt;localport&gt;:&lt;tunneled remote
-      host&gt;:&lt;port on remote host&gt; user@host</b></tt> --
+      <li><tt><strong>ssh -L &lt;localport&gt;:&lt;tunneled remote
+      host&gt;:&lt;port on remote host&gt; user@host</strong></tt> --
       The magical incantation for local port forwarding.</li>
 
-      <li><tt><b>ssh -R &lt;remoteport&gt;:&lt;tunneled local
-      host&gt;:&lt;port on local host&gt; user@host</b></tt> --
+      <li><tt><strong>ssh -R &lt;remoteport&gt;:&lt;tunneled local
+      host&gt;:&lt;port on local host&gt; user@host</strong></tt> --
       Basically the opposite of -L, a great way to get into a
       machine behind a firewall if you have local access. Just ssh
       out from it to your home computer, or a computer with ssh
       access. Leave the connection open and then tunnel right back
       in.</li>
 
-      <li><tt><b>ssh-keygen -t rsa</b></tt> then scp
+      <li><tt><strong>ssh-keygen -t rsa</strong></tt> then scp
       ~/.ssh/id_rsa.pub to the host and cat it onto
       ~/.ssh/authorized_keys. Be sure the directory permission is
       700!</li>
 
-      <li><tt><b>ssh -L 5901:localhost:5901 &lt;host&gt;</b></tt> --
+      <li><tt><strong>ssh -L 5901:localhost:5901 &lt;host&gt;</strong></tt> --
       This will tunnel vnc via ssh.  Very worthwhile.</li>
     </ul><!-- Rsync Section -->
 
-    <h3><a name="rsync">Rsync</a></h3>
+    <h3>Rsync</h3>
 
     <ul>
       <li>The follow is pretty much how I always use rsync to update
-      conf files between machines: <tt><b>rsync -r -tv -e ssh localdir1
-	  localdir2 ...  localdirn user@host:.</b></tt>.  Turns on
+      conf files between machines: <tt><strong>rsync -r -tv -e ssh localdir1
+	  localdir2 ...  localdirn user@host:.</strong></tt>.  Turns on
       recursion, preservation of timestamps, verbose output, and use
       ssh.</li>
     </ul>
 
-    <h3><a name="find">Find</a></h3>
+    <h3>Find</h3>
 
-    <p>
-    Find is quite possibly the most important utility in any Unix admin's
-    toolbox.  I've listed some examples below.  Read the man page for more
-    information.
-    </p>
+    <p>Find is the most important utility in any Unix admin's toolbox.
+       I've listed some examples below.  Read the man page for more
+       information.  </p>
 
-    <p> Notice I've appended <tt>| tee ~/find.log</tt> to the end of each
-    command below.  It isn't necessary, but I really prefer to do this so that
-    my search results get saved to a file I can work with later.  </p>
+    <p>Notice I've appended <tt>| tee ~/find.log</tt> to the end of
+    each command below.  It isn't necessary, but I really prefer to do
+    this so that my search results get saved to a file I can work with
+    later.  </p>
 
-    <p>
-    In fact, a fun way to work with find is to create a shell function so that
-    this always happens:
+    <p>In fact, a fun way to work with find is to create a shell function
+    so that this always happens:</p>
 
     <pre>
 function find {
@@ -209,14 +214,14 @@ function find {
       <tt>find ~/ -maxdepth 1 (search goes here) | tee ~/find.log</tt></li>
     </ul>
 
-    <h3><a name="wget">Wget</a></h3>
+    <h3>Wget</h3>
 
     <ul>
-      <li><tt><b>wget --no-host-directories/-nH</b></tt> I think
+      <li><tt><strong>wget --no-host-directories/-nH</strong></tt> I think
       this is an annoying default, but it does help keep things a bit
       safer and accounted for.</li>
 
-      <li><tt><b>wget -m</b></tt> for mirror mode. If I'm pulling
+      <li><tt><strong>wget -m</strong></tt> for mirror mode. If I'm pulling
       down more than one thing off the web I generally use
       this.</li>
 
@@ -226,129 +231,128 @@ function find {
       be very bad.</li>
     </ul>
 
-    <h3><a name="lvm">Linux LVM</a></h3>
+    <h3>Linux LVM</h3>
 
-    <p>In a rescue system, to access lvm drives try <b>vgscan,
-    vgchange -ay, vgmknodes.</b> <tt>mount</tt> drives before the
+    <p>In a rescue system, to access lvm drives try <strong>vgscan,
+    vgchange -ay, vgmknodes.</strong> <tt>mount</tt> drives before the
     chroot and then chroot target. You may have to also <tt>mount
     -t proc proc /proc</tt> to make some utils happy.</p>
 
-    <h3><a name="dpkg">dpkg</a></h3>
+    <h3>dpkg</h3>
 
     <p>I used to run Fedora, but I've switched to Ubuntu. Now
     everything uses dpkg so this is here to remind me how to
     investigate packages.</p>
 
     <ul>
-      <li><b>List Package Contents</b> -- dpkg -L &lt;package
+      <li><strong>List Package Contents</strong> -- dpkg -L &lt;package
       name&gt;</li>
 
-      <li><b>Show Package Description</b> -- dpkg -p &lt;package
+      <li><strong>Show Package Description</strong> -- dpkg -p &lt;package
       name&gt;</li>
 
-      <li><b>Show All Installed Packages</b> -- dpkg --list</li>
+      <li><strong>Show All Installed Packages</strong> -- dpkg --list</li>
 
-      <li><b>Show Which Package 'filepath' Belongs To</b> -- dpkg -S
+      <li><strong>Show Which Package 'filepath' Belongs To</strong> -- dpkg -S
       filepath</li>
     </ul>
 
-    <h3><a name="vim">Vim</a></h3>
+    <h3>Vim</h3>
 
     <p>This section coming soon. I've been playing around with Vim
     lately.  I'll be adding a section here shortly.</p>
 
-    <h3><a name="emacs">Emacs</a></h3>
+    <h3>Emacs</h3>
 
     <p>I use GNU emacs where I can get away with it. It's hard
-    sometimes, it often won't come on small bootable Linux systems
-    of which I find myself in from time to time, in which case it's
-    often Nano or vi (yes, I have to use sometimes). My problem is
-    I often forget the emacs-lisp incantations I like to keep in my
-    .emacs file, so <a href=".emacs">here's my safe, simple, emacs
-    file in case I need it</a>, as well as my <a href=
-    ".elisp">Elisp libraries I use</a>, and here's a list of common
-    emacs lisp settings I can't live without and can't often
-    remember. I usually to spend time tweaking GNU emacs when I
-    load it up for the first time on a system. I've set this place
-    up as my cheat sheet.</p>
+    sometimes, it often won't come on small bootable Linux systems of
+    which I find myself in from time to time, in which case it's often
+    Nano or vi (yes, I have to use sometimes). My problem is I often
+    forget the emacs-lisp incantations I like to keep in my .emacs
+    file, so <a href=".emacs">here's my safe, simple, emacs file in
+    case I need it</a>, as well as my <a href= ".elisp">Elisp
+    libraries I use</a>, and here's a list of common emacs lisp
+    settings I can't live without and can't often remember. I usually
+    to spend time tweaking GNU emacs when I load it up for the first
+    time on a system. I've set this place up as my cheat sheet.</p>
 
     <p>I can't emphasis enough how useful the <a href=
     "http://www.emacswiki.org/">Emacs Wiki</a> is. It's
     invaluable.</p><!-- Begin Emacs List -->
 
     <ul>
-      <li><tt><b>When in doubt, launch emacs with "-q". This starts
+      <li><tt><strong>When in doubt, launch emacs with "-q". This starts
       a clean Emacs that ignores your startup file. Use --no-site
       to run emacs without custom site-wide
-      configurations</b></tt></li>
+      configurations</strong></tt></li>
 
       <li>For Emacs novices, you can use the menu, even in a
       terminal. F10 will get you to the menu, but if the terminal
       emulator you're using doesn't let you send f10, you can push
-      <tt><b>ESC `</b></tt> instead. There's lots of useful
+      <tt><strong>ESC `</strong></tt> instead. There's lots of useful
       functions you can access easily from the menu, and if one of
       them happens to be bound to a keyboard shortcut, it'll tell
       you what it is after using it.</li>
 
-      <li><span style="text-decoration: line-through;"><tt><b>(setq
-      backup-directory-alist '(("." . "~/.my_backups")))</b></tt>
+      <li><span style="text-decoration: line-through;"><tt><strong>(setq
+      backup-directory-alist '(("." . "~/.my_backups")))</strong></tt>
       Helps keep those backup files from cluttering your
       directories. Make sure the directory "~/.my_backups"
       exists!</span> Scratch that. I've grown found of the default
       way backup files are kept.</li>
 
-      <li><tt><b>M-x normal-erase-is-backspace</b></tt> to fix
+      <li><tt><strong>M-x normal-erase-is-backspace</strong></tt> to fix
       backspace problems when jumping between Mac/PC environments
       and terminal emulators.</li>
 
       <li><span style="text-decoration: line-through;">Saving
       editing sessions is incredibly useful
-      with<tt><b>(desktop-load-default) (desktop-read)</b></tt>in
+      with<tt><strong>(desktop-load-default) (desktop-read)</strong></tt>in
       the .emacs file. Don't forget to save your session the first
-      time with <tt><b>M-x desktop-save</b></tt> and don't forget
+      time with <tt><strong>M-x desktop-save</strong></tt> and don't forget
       to start Emacs in the same directory as before!</span> CVS
       Emacs (which is what I use now) only needs
       (desktop-save-mode). The previous advice is still useful if
       you're stuck with a previous version of Emacs.</li>
 
-      <li><tt><b>(setq dired-recursive-copies t) and (setq
-      dired-recursive-deletes t)</b></tt> to copy and delete
+      <li><tt><strong>(setq dired-recursive-copies t) and (setq
+      dired-recursive-deletes t)</strong></tt> to copy and delete
       recursively in Dired (Emacs' DIRectory EDitor). Admittedly, I
       don't really use this.</li>
 
-      <li>There are several useful rings in Emacs. Sometimes I
-      forget about them. There's the kill ring, the search ring,
-      and the mark ring. To cycle through the kill ring
-      <tt><b>C-y</b></tt> then <tt><b>M-y</b></tt> to cycle through
-      the last few things killed in the current buffer. They're
-      always there until the kill ring runs out of room, and it'll
-      keep looping, so it's a great robust way to save text. The
-      search ring preserves your previous searches and can save
-      lots of typing. Use M-p and M-n to cycle through previous
-      searches. There is a seperate ring for every type of search.
-      The mark ring is perhaps the most under used and under
-      appreciated feature of Emacs in my opinion. You can set the
-      mark with <tt><b>C-&lt;SPC&gt;</b></tt> which will also allow
-      you to set the region by moving the point, but you can also
-      move back to the mark and cycle through all your recent marks
-      in the current buffer with <tt><b>C-u C-&lt;SPC&gt;</b>.
-      Using the mark ring in conjunction of searching is a great
-      way to zip around a file quickly. Makes me wonder why we even
-      need mice.</tt></li>
+      <li>There are several useful rings in Emacs. Sometimes I forget
+      about them. There's the kill ring, the search ring, and the mark
+      ring. To cycle through the kill
+      ring <tt><strong>C-y</strong></tt>
+      then <tt><strong>M-y</strong></tt> to cycle through the last few
+      things killed in the current buffer. They're always there until
+      the kill ring runs out of room, and it'll keep looping, so it's
+      a great robust way to save text. The search ring preserves your
+      previous searches and can save lots of typing. Use M-p and M-n
+      to cycle through previous searches. There is a seperate ring for
+      every type of search.  The mark ring is perhaps the most under
+      used and under appreciated feature of Emacs in my opinion. You
+      can set the mark with <tt><strong>C-&lt;SPC&gt;</strong></tt>
+      which will also allow you to set the region by moving the point,
+      but you can also move back to the mark and cycle through all
+      your recent marks in the current buffer with <tt><strong>C-u
+      C-&lt;SPC&gt;</strong>.  Using the mark ring in conjunction of
+      searching is a great way to zip around a file quickly. Makes me
+      wonder why we even need mice.</tt></li>
 
       <li>Macros, Macros, and more Macros. Never forget about
-      Macros. <tt><b>C-x (</b></tt> to start one, and <tt><b>C-x
-      )</b></tt> to finish it off. <tt><b>C-x e</b></tt> to execute
-      it. <tt><b>C-u C-x (</b></tt> to execute and add more to it.
-      <tt><b>M-x name-last-kbd-macro</b></tt> to name it for later.
-      <tt><b>C-x C-k Edit a previously defined keyboard
-      macro,</b></tt> and <tt><b>M-x
-      apply-macro-to-region-lines</b></tt> to run it over your
+      Macros. <tt><strong>C-x (</strong></tt> to start one, and <tt><strong>C-x
+      )</strong></tt> to finish it off. <tt><strong>C-x e</strong></tt> to execute
+      it. <tt><strong>C-u C-x (</strong></tt> to execute and add more to it.
+      <tt><strong>M-x name-last-kbd-macro</strong></tt> to name it for later.
+      <tt><strong>C-x C-k Edit a previously defined keyboard
+      macro,</strong></tt> and <tt><strong>M-x
+      apply-macro-to-region-lines</strong></tt> to run it over your
       highlighted region. CVS Emacs has expanding macro
       functionality. There is now a macro ring that preserves the
       last few macros, and start-kbd-macro and end-kbd-macro have
-      bindings to F2 and F3. Don't forget <tt><b>M-x
-      insert-kbd-macro</b></tt>, I have a tendency to write useful
+      bindings to F2 and F3. Don't forget <tt><strong>M-x
+      insert-kbd-macro</strong></tt>, I have a tendency to write useful
       macros out to a hidden file in the working directory of a
       project called ".macros.el" so I can load 'em later. If you
       want to make a named keyboard macro the current keyboard
@@ -361,25 +365,23 @@ function find {
       search the contents of each file in a directory structure for
       a regular expressions; copy, compress and make backups; load
       and compile elisp libraries; and batch rename files. Pop into
-      a directory with <tt><b>C-x C-f</b></tt>. Use this awesome
+      a directory with <tt><strong>C-x C-f</strong></tt>. Use this awesome
       sequence of commands to rename a series of files based on
       regular expressions: * % &lt;type your regular expression
       with groupings&gt; RET new name with groupings. If you don't
       know regular expressions yet, this is a very good reason why
       you should learn them ;).</li>
 
-      <li>Emacs is the ultimate <a href=
-      "http://www.barebones.com/products/bbedit/index.shtml">BBEdit</a>
-      for unix when it comes to converting ascii formats and
-      character sets. <tt><b>C-x RET f</b></tt> let's you change
-      what format the text you're working on is for writing. A
-      super quick way to convert Mac-&gt;PC-&gt;Unix Ascii.</li>
+      <li>Emacs is for converting ascii formats and character
+      sets. <tt><strong>C-x RET f</strong></tt> let's you change what format the
+      text you're working on is for writing. A super quick way to
+      convert Mac-&gt;PC-&gt;Unix Ascii.</li>
 
       <li>Any character can be typed in Emacs by quoting it with
       C-q. The rest is up to your terminal emulation software and
       its ability to send that character.</li>
 
-      <li><tt><b>Info-directory-list</b></tt> is a useful variable
+      <li><tt><strong>Info-directory-list</strong></tt> is a useful variable
       for maintaining locally installed Info documentation. If you
       don't have root on a machine, it's impossible to install Info
       documentation site wide so you'll need to use this variable.
@@ -389,9 +391,9 @@ function find {
       Mine looks like this on the SDF:
       INFOPATH="~/.elisp/info/":"/usr/pkg/info/":"/usr/share/info/"</li>
     </ul><!-- End Emacs Section -->
-    <hr />
+    <hr >
 
-    <h2><a name="games">Games</a></h2>
+    <h2>Games</h2>
 
     <h3>That Block Game</h3>
 
@@ -415,25 +417,15 @@ function find {
     <a href="hangman.cpp">hangman.cpp</a>
     <!-- New Sections Here -->
 
-    <p><script type="text/javascript">
-          var irr_lang = 'en';
-    </script> <script src=
-    "http://fragments.irrepressible.info/js/fragment-468.js" type=
-    "text/javascript">
-    </script></p>
-
     <p> My speed tests for my comcast connection.  Not bad if I do say so
     myself.</p>
 
     <p><a href="http://jigsaw.w3.org/css-validator/"><img style=
     "border:0;width:88px;height:31px" src=
     "http://jigsaw.w3.org/css-validator/images/vcss" alt=
-    "Valid CSS!" /></a> <a href=
-    "http://validator.w3.org/check?uri=referer"><img src=
-    "http://www.w3.org/Icons/valid-html401" alt=
-    "Valid HTML 4.01 Transitional" height="31" width="88" style=
-    "border:0;width:88px;height:31px" /></a></p>
-  <p>
+    "Valid CSS!" ></a>
+    <p>
+
   <a href="http://speedtest.dslreports.com"><img border=0 src="http://www.dslreports.com/im/57093101/1628.png"></a>
   </p>
   </div>

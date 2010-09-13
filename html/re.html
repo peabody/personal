@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html >
 
 <html>
 <head>
@@ -8,17 +8,22 @@
   <title>Sam's Regular Expression Page</title>
   <meta http-equiv="Content-Type" content=
   "text/html; charset=utf-8">
-  <meta name="generator" content="GNU Emacs">
+  <meta name="generator" content="GNU Emacs 23.1.1 (i486-pc-linux-gnu, GTK+ Version 2.20.0) of 2010-03-29 on rothera, modified by Debian">
   <meta name="author" content="Sam Peterson">
   <meta name="keywords" content=
   "Unix Linux Emacs Vim Python Perl PHP Web">
   <meta name="description" content="Sam Peterson's Random Notes">
-  <link rel="stylesheet" type="text/css" href="/site.css">
-</head>
+  <link rel="stylesheet" type="text/css" href="site.css">
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="javascript/table_of_contents.js"></script></head>
 
 <body>
   <div class="document">
     <h1>Regular Expressions</h1>
+
+    <div id="toc"></div>
+
+    <h2>The world of REs</h2>
 
     <p>Regular Expressions are so much trouble in Unix that I wrote
     this page just to talk about them. Namely I show what they are,
@@ -90,7 +95,7 @@
     <p>If that wasn't bad enough, each individual program's
     implementation often has subtle quirks to its syntax.</p>
 
-    <h1>Metacharacters</h1>
+    <h2>Metacharacters</h2>
 
     <p>There are different metacharacters for different regular
     expression implementations. Here are the lists:</p>
@@ -106,7 +111,7 @@
     <p>As can be seen, all metacharacters need to be backslash
     escaped with the exception of *,^, $, [, \.</p>
 
-    <h1>Character Classes</h1>
+    <h2>Character Classes</h2>
 
     <p>Character classes differ greatly between regular expression
     implementations. Let us start with basic regular
@@ -153,7 +158,7 @@
       <li>\S any non-whitespace character</li>
     </ul>
 
-    <h1>The replacement (that "s" thingy)</h1>
+    <h2>The replacement (that "s" thingy)</h2>
 
     <p>There are some important details to know about the
     replacement side of the pattern. Almost everything is included
@@ -163,7 +168,7 @@
     &amp; then make sure to backslash escape it. If you need to
     include a literal \DIGIT form, us a double backslash.</p>
 
-    <h1>Programs that use regular expressions</h1>
+    <h2>Programs that use regular expressions</h2>
 
     <ul>
       <li>grep (basic per default, egrep uses extended re's)</li>
@@ -188,8 +193,8 @@
       <li>apache (Perl re's if compiled in, basic otherwise)</li>
     </ul>
 
-    <h1>Programming languages that use regular expressions
-    frequently</h1>
+    <h2>Programming languages that use regular expressions
+    frequently</h2>
 
     <p>Note: I suppose awk is considered a programming language by
     some, but I'm leaving it out of this list since it was listed
