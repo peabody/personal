@@ -1,22 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html >
 
 <html>
 <head>
 
   <title>Editor Wars</title>
   <meta http-equiv="Content-Type" content=
-  "text/html; charset=us-ascii">
+  "text/html; charset=utf-8">
   <meta name="generator" content="GNU Emacs">
   <meta name="author" content="Sam Peterson">
   <meta name="keywords" content=
   "Unix Linux Emacs Vim Python Perl PHP Web">
   <meta name="description" content="Sam Peterson's Random Notes">
-  <link rel="stylesheet" type="text/css" href="/site.css">
+  <link rel="stylesheet" type="text/css" href="site.css">
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript"
+  src="javascript/table_of_contents.js"></script>
 </head>
 
 <body>
   <div class="document">
     <h1>The Editor Wars</h1>
+
+    <div id="toc"></div>
+
+    <h2>A Tale of Two Editors</h2>
 
     <p>This page is my own take on the so-called "Editor Wars". For
     those who don't know what the Editor Wars are, here's an
@@ -91,7 +98,7 @@
     do things slightly differently, and as the proverb says "It's
     the differences that make things interesting."</p>
 
-    <h1>Contrasting the two</h1>
+    <h2>Contrasting the two</h2>
 
     <h2>Modal vs Modeless Editing</h2>
 
@@ -129,12 +136,12 @@
     consist of rearranging text or changing a few lines of text, I
     prefer modal.</p>
 
-    <h1>Size Matters</h1>
+    <h2>Size Matters</h2>
 
     <p>The weight and memory footprint of the editors has also been
     an issue of debate.</p>
 
-    <h1>Subtle Differences</h1>
+    <h2>Subtle Differences</h2>
 
     <p>Both editors have registers. Both editors store their
     deletions into structures that can paste them back. Vim does it
@@ -142,7 +149,7 @@
     stores cursor locations in registers. Emacs has the
     mark-ring.</p>
 
-    <h1>Practical Considerations</h1>
+    <h2>Practical Considerations</h2>
 
     <p>Other than design considerations, there are practical
     considerations to take into account. For example, Emacs has a

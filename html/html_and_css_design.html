@@ -1,0 +1,218 @@
+ <!DOCTYPE html> 
+
+<html>
+<head>
+
+  <title>HTML, CSS, and JavaScript Design Notes</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8" />
+  <meta name="generator" content="GNU Emacs 23.1.1 (i486-pc-linux-gnu, GTK+ Version 2.20.0) of 2010-03-29 on rothera, modified by Debian" />
+  <meta name="author" content="Sam Peterson" />
+  <meta name="keywords" content=
+  "Unix Linux Emacs Vim Python Perl PHP Web" />
+  <meta name="description" content="Sam Peterson's Random Notes" />
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+<div style="width: 600px; border-right: 1px solid; padding-right: 50px;">
+
+<h1>HTML, CSS, and JavaScript Design Notes</h1>
+
+<h2>Picking Colors</h2>
+
+<p>Guessing the RGB hex values for the color you're looking for on a
+  page is no way to go.  Make the web work for you and use a color
+  picker. <a href="http://www.w3schools.com/tags/ref_colorpicker.asp">My
+  favorite html color picker</a>.</p>
+
+<h2>Centering in CSS</h2>
+
+<p>Centering is easy in CSS for inline elements, but not for
+  block-level elements.  Below is an example of inline centering.</p>
+
+<p style="text-align: center;">This text is part of a paragraph with the
+  text-align property set to center.</p>
+
+<p>So far so good.  However, what happens to block-level elements in
+  the context of &quot;text-align: center&quot;, like a table, within
+  a div?</p>
+
+<div style="text-align: center;">
+  <table><tr><td>This text is in a table, but doesn't look centered.</tr></td>
+  </table>
+</div>
+
+<p>Yarg!  What happened?  Simply put, the text-align property doesn't
+  apply to block-level elements (unless you use Internet
+  Explorer, but IE is doing it wrong in this case).</p>
+
+<p>How would we fix the above example?  The answer is margins, and
+  widths.  Our first step is to set the width of the div tag to be the
+  length of the page.</p>
+
+<div style="font-family: courier;">&lt;div style=&quot;width: 100%;&quot;&gt;</div>
+
+<p>Next we set the left and right margins of the table to be auto.</p>
+
+<div style="font-family: courier;">
+  &lt;table style=&quot;margin-right: auto; margin-left: auto;&quot;&gt;&lt;tr&gt;&lt;td&gt;This paragraph is part
+    of a table within a div with the text-align property set to
+    center.&lt;/tr&gt;&lt;/td&gt;
+  &lt;/table&gt;
+</div>
+
+<p>Put it all together and you have...</p>
+
+<div style="width: 100%;">
+  <table style="margin-left: auto; margin-right: auto;"><tr><td>This
+  text is in a table, and looks centered.</tr></td>
+  </table>
+</div>
+
+<h2>Rounded Corners</h2>
+
+<p>The biggest stylistic shortcoming of the border-box model of HTML
+  and CSS is everything needs to be in a boxy grid.  Basically, one
+  can think of an HTML document as a giant spreadsheet with a lot of
+  leeway regarding columns and rows.  If you want curves or diagonals,
+  you have to fake it, either by using images, or by piecing a bunch
+  of boxes together in clever ways.  To demonstrate this, I'm going to
+  take a look at how rounded corners have been done in HTML
+  documents.</p>
+
+<p>The technique I'll be illustrating is sometimes called the Sliding
+  Window method.  It involves using a six cell table with four corner
+  images used as background images in the corner cells.  The middle
+  cells on the top, left, right, and bottom <em>slide</em> or grow to
+  fit the needs of the content of the very middle cell.</p>
+
+<p>First you need to make a corner image (or steal one).  I made the
+  one below using gimp and the ellipse selection tool.  I am by no
+  means a professional graphic designer, but anybody should easily be
+  able to create their own (possibly even in windows paint) in case
+  you can't find one.</p>
+
+<img src="images/corner-tl.png">
+
+<p>Rotate around the above image until you have four</p>
+
+<img src="images/corner-tl.png">
+<img src="images/corner-bl.png">
+<img src="images/corner-br.png">
+<img src="images/corner-tr.png">
+
+<p>Place them in a tabular grid of cells with background images
+  set.  I've kept the border and padding attributes so the grid can
+  be seen in the example below.</p>
+
+<table style="border: 1px solid;">
+  <tr>
+    <td style="background-image: url('images/corner-tl.png');" width="22" height="19"> </td>
+    <td style="background-color: black;"></td>
+    <td style="background-image: url('images/corner-tr.png');" width="22" heigh="19"> </td>    
+  </tr>
+  <tr>
+    <td style="background-color: black;"></td>
+    <td style="background-color: black; color: white;">Your body content goes here.</td>
+    <td style="background-color: black;"></td>
+  </tr>
+  <tr>
+    <td style="background-image: url('images/corner-bl.png');" width="22" height="19"> </td>
+    <td style="background-color: black;"></td>
+    <td style="background-image: url('images/corner-br.png');"> </td>    
+  </tr>
+</table>
+
+<p>Below is the what it should look like once you've removed the
+  border, cellpadding and cellspacing values of the table.</p>
+
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td style="background-image: url('images/corner-tl.png'); width: 22px; heigh: 19px;" width="22" height="19"> </td>
+    <td style="background-color: black;"></td>
+    <td style="background-image: url('images/corner-tr.png'); width: 22px; heigh: 19px;"> </td>    
+  </tr>
+  <tr>
+    <td style="background-color: black;"></td>
+    <td style="background-color: black; color: white;">Your body content goes here.</td>
+    <td style="background-color: black;"></td>
+  </tr>
+  <tr>
+    <td style="background-image: url('images/corner-bl.png'); width: 22px; heigh: 19px;" width="22" height="19"> </td>
+    <td style="background-color: black;"></td>
+    <td style="background-image: url('images/corner-br.png'); width: 22px; heigh: 19px;"> </td>    
+  </tr>
+</table>
+
+<p>As can be seen, I didn't quite get pixels in the corner image
+  aligned right to the side of the middle cells and so it looks like
+  something sticks out.  That helps demonstrate some of the
+  disadvantages of doing rounded corners in this way.</p>
+
+<p>There are more advanced techniques that involve only CSS rather
+  than background images.  Some even use Javascript to dynamically
+  setup rounded corners on existing HTML.  Rather than re-implement
+  these myself,
+  I'll <a href="http://www.devwebpro.com/25-rounded-corners-techniques-with-css/">link
+  to them</a> instead.</p>
+
+<p>The future of doing rounded corners correctly will be via the CSS 3
+  border-radius property.  The below is one div with it applied.
+  Unfortunately, if you aren't using a very modern browser (such as
+  Google Chrome), the below example will still just look like a sharp
+  edged box to you.</p>
+
+<p style="border-radius: 20px; background-color: black; color: white;
+  width: 300px; padding: 20px;">This demonstrates the border radius
+  property.  This cell is a single paragraph tag.  However, it
+  currently only works on <a href="http://chrome.google.com/"
+  style="color: white">Google Chrome</a>.
+</p>
+
+<h2>Gradients</h2>
+
+<p>Gradients are a popular way to add style to </p>
+
+<h2>Animation with jQuery</h2>
+
+<p>Javascript allows one to dynamically change the style properties
+  of the document tree.  Done in clever ways with timers, this can
+  create animation effects.  Crafting these effects by hand is
+  arduous.  The jQuery javascript library, however, makes this much
+  more expressive and simple.</p>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#slidetitle").click(function(){
+      $("#exampleslide").slideToggle();
+    })
+  });
+</script>
+
+<div style="border: 1px solid; padding: 5px;" id="slidetitle"><p>Click this example to toggle a
+    slide effect.</p>
+  <p id="exampleslide" style="display: none;">Now this is visible.
+    <img src="images/totakeke1.gif">
+  </p>
+</div>
+
+<p>The above code only took five lines of Javascript and only three
+  of those lines truly contained content:</p>
+
+<pre style="border: 1px solid; background-color: #FFFF99; padding: 10px;">
+  $(document).ready(function(){
+    $("#slidetitle").click(function(){
+      $("#exampleslide").slideToggle();
+    })
+  });  
+</pre>
+
+<p>In plain English this reads, "Please, jQuery, when the document has
+  loaded, add an event handler to the tag with the id 'slidetitle' so
+  that when the mouse is clicked on the box generated by this tag, the
+  paragraph with the id 'exampleslide' is animated into or out of
+  view."</p>
+
+</div></body>
+</html>

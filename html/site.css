@@ -1,14 +1,8 @@
-/* {
-  padding: 0px;
-  margin: 0px;
-} */
-
 body
 {
   font-family: Helvetica, sans-serif;
   background-color: white;
   color: black;
-  /* background-image: url('/images/background_grad2_short.png'); */
   background-repeat: repeat-x;
   text-align: center;
 }
@@ -22,7 +16,10 @@ a:hover {text-decoration: none}
   margin-right: auto;
   padding: 15px;
   background-color: #FFFFFF;
-  border: 2px dashed #A0A0A0;
+  border: 2px solid #A0A0A0;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
   width: 75%;
 }
 
@@ -36,10 +33,6 @@ a:hover {text-decoration: none}
   line-height: 1.5em;
 }
 
-/* .contents ol {padding: 10px;} */
-
 h1:before {
-  content: url('/images/totakeke1.gif');
-/*  background: gray;
-  border: 1px solid; */
+  content: url('images/totakeke1.gif');
 }
