@@ -1,8 +1,0 @@
-(fset 'skm-highlight
-   "<li></li>\C-b\C-b\C-b\C-b\C-b<tt><b></b></tt>\C-b\C-b\C-b\C-b\C-b\C-b\C-b\C-b\C-b")
-(fset 'skm-ul
-   "<ul>\C-m\C-m<ul>\C-[OA\C-m\C-[OA\C-m<li></li>\C-[b\C-b\C-b")
-(fset 'skm-li
-   "<li></li>\C-b\C-b\C-b\C-b\C-b")
-(fset 'skm-html-start
-   "<!doctype html public ~-\C-?\C-?\"-//w3c//dtd html 4.0 transitional//en\">\C-m<html>\C-m<head>\C-m\C-m</head>\C-[OA\C-i<title></title>\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-[OD\C-q\C-i\C-n\C-n\C-m\C-m<body>\C-m\C-m\C-m</body>\C-m</html>\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-f\C-f\C-f\C-f\C-f\C-f\C-f")
