@@ -6,18 +6,23 @@
   <title>HTML, CSS, and JavaScript Design Notes</title>
   <meta http-equiv="Content-Type" content=
   "text/html; charset=utf-8" />
-  <meta name="generator" content="GNU Emacs 23.1.1 (i486-pc-linux-gnu, GTK+ Version 2.20.0) of 2010-03-29 on rothera, modified by Debian" />
+  <meta name="generator" content="GNU Emacs" />
   <meta name="author" content="Sam Peterson" />
   <meta name="keywords" content=
   "Unix Linux Emacs Vim Python Perl PHP Web" />
-  <meta name="description" content="Sam Peterson's Random Notes" />
+  <meta name="description" content="Sam's HTML, CSS, and Javascript notes" />
+  <link rel="stylesheet" type="text/css" href="site.css" >
   <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <script type="text/javascript"
+  src="javascript/table_of_contents.js"></script>
 </head>
 
 <body>
-<div style="width: 600px; border-right: 1px solid; padding-right: 50px;">
+<div class="document">
 
 <h1>HTML, CSS, and JavaScript Design Notes</h1>
+
+<div id="toc"></div>
 
 <h2>Picking Colors</h2>
 
@@ -163,7 +168,7 @@
   Google Chrome), the below example will still just look like a sharp
   edged box to you.</p>
 
-<p style="border-radius: 20px; background-color: black; color: white;
+<p style="border-radius: 20px; -moz-border-radius: 20px; background-color: black; color: white;
   width: 300px; padding: 20px;">This demonstrates the border radius
   property.  This cell is a single paragraph tag.  However, it
   currently only works on <a href="http://chrome.google.com/"
@@ -172,7 +177,18 @@
 
 <h2>Gradients</h2>
 
-<p>Gradients are a popular way to add style to </p>
+<p>Gradients are a popular way to add style to a web page.
+  Unfortunately, the only cross browser compatible way to do them is
+  still background images, but that's changing slowly.  Below are
+  some CSS gradient examples for mozilla and webkit based
+  browsers.</p>
+
+<div id="moz-gradient" style="width: 100px; height: 100px;
+                              background: -moz-linear-gradient(-90deg, green, white);"></div>
+<div id="webkit-gradient" style="width: 100px; height: 100px;
+                                 background: -webkit-gradient(linear,
+                                 left top, left bottom, from(green),
+                                 to(white))"></div>
 
 <h2>Animation with jQuery</h2>
 
