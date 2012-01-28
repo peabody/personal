@@ -1,0 +1,1 @@
+tidy -w 80 -i -c -q --tidy-mark 0 --output-xml 1 --doctype 1

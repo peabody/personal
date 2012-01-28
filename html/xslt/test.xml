@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<test-reformat xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xmlns:h="http://www.w3.org/1999/xhtml"><section-heading>GNU Emacs</section-heading><section><heading>What's Emacs?</heading><content><p xmlns="http://www.w3.org/1999/xhtml">Emacs is an advanced text editor. It has a lot of whiz-bang features
+    people don't know about. I think it's one the most impressive pieces of
+    software in existance. This page is meant to be a very brief (or not so
+    brief) sheet to get you started. The beginning of this document is a list
+    of features of Emacs that reads like a corporate brochure, so if you want
+    to skip the chatter, use the navigation above to go to <em>Note on Emacs
+    Keys</em></p><ol xmlns="http://www.w3.org/1999/xhtml">
+      <li>Comment whole selections of your program! This is a very useful
+      practice when working with multiple versions of the same function that
+      you're trying to get to work, or when discarding old code to temporarily
+      test new code. Create a region (or click and drag the mouse when your in
+      a gui with Emacs) and press C-c C-c. Viola, your code is <em>turned
+      off</em> for the time being. To uncomment it, simply highlight it again
+      and run C-u C-c C-c.</li>
+
+      <li>It is syntax aware. Emacs knows about C syntax and syntax color
+      highlights your code. It also auto-indents your code based upon your own
+      C coding style and therefore tells you almost immediately when you have
+      syntax problems.</li>
+
+      <li>Because Emacs is syntax aware, you can maneuver entirely from the
+      keyboard. Not only does this cut down on wrist strain, but Emacs'
+      movement commands help you syntax check your code. For example, you can
+      check to make sure your curly braces are properly balanced (closed) by
+      moving over them (C-M-f and C-M-b).</li>
+
+      <li>Emacs has code completion features perfect for C, abbreviations and
+      dynamic abbreviations. Abbreviations are typing shortcuts you define for
+      commonly used functions and variables. Dynamic abbreviations is a feature
+      where Emacs scans your current open files to find the best match for a
+      partially typed function or variable name.</li>
+
+      <li>Emacs has an excellent interface for working with multiple files. It
+      can display more than one file on the screen at a time, or different
+      locations within the same file at the same time.</li>
+
+      <li>Speaking of multiple files, Emacs also has an excellent interface for
+      dealing with code that spans multiple files: tags. First you need to
+      build a tags database using etags, then you have to tell Emacs to use the
+      tags file via M-x visit-tags-table. But once that's done, you can
+      navigate to the file containing the function right at your cursor with
+      M-. A very, VERY, useful feature for working with large projects.</li>
+
+      <li>You can compile, check syntax errors, and debug your code with gdb,
+      all from within Emacs. This provides a nice graphical interface to gdb
+      which allows you to set breakpoints from within the editor.</li>
+
+      <li>Emacs is completely extensible. You can customize it to create custom
+      editing commands to suit your specific needs. For example, I have have
+      editing commands that automatically create both opening and closing curly
+      braces when typed. I also have a custom command that wraps a region in an
+      if statement.</li>
+
+      <li>You can run the C preprossesor from within Emacs and look at the the
+      way your source code looks like after preprocessing (after all the
+      #includes are actually included). You can also move across preprocessor
+      conditionals, or hide code within preprocessor conditionals. You can hide
+      code based on indentation level to look at particularly long or
+      complicated functions.</li>
+
+      <li>Code can be folded up, just like in Visual Studio. Turn on
+      hs-minor-mode (HideShow mino mode) and then you can hide select elements
+      of your code to make your files more readable.</li>
+    </ol></content></section>Emacs is an advanced text editor. It has a lot of whiz-bang features
+    people don't know about. I think it's one the most impressive pieces of
+    software in existance. This page is meant to be a very brief (or not so
+    brief) sheet to get you started. The beginning of this document is a list
+    of features of Emacs that reads like a corporate brochure, so if you want
+    to skip the chatter, use the navigation above to go to Note on Emacs
+    Keys
+      Comment whole selections of your program! This is a very useful
+      practice when working with multiple versions of the same function that
+      you're trying to get to work, or when discarding old code to temporarily
+      test new code. Create a region (or click and drag the mouse when your in
+      a gui with Emacs) and press C-c C-c. Viola, your code is turned
+      off for the time being. To uncomment it, simply highlight it again
+      and run C-u C-c C-c.
+
+      It is syntax aware. Emacs knows about C syntax and syntax color
+      highlights your code. It also auto-indents your code based upon your own
+      C coding style and therefore tells you almost immediately when you have
+      syntax problems.
+
+      Because Emacs is syntax aware, you can maneuver entirely from the
+      keyboard. Not only does this cut down on wrist strain, but Emacs'
+      movement commands help you syntax check your code. For example, you can
+      check to make sure your curly braces are properly balanced (closed) by
+      moving over them (C-M-f and C-M-b).
+
+      Emacs has code completion features perfect for C, abbreviations and
+      dynamic abbreviations. Abbreviations are typing shortcuts you define for
+      commonly used functions and variables. Dynamic abbreviations is a feature
+      where Emacs scans your current open files to find the best match for a
+      partially typed function or variable name.
+
+      Emacs has an excellent interface for working with multiple files. It
+      can display more than one file on the screen at a time, or different
+      locations within the same file at the same time.
+
+      Speaking of multiple files, Emacs also has an excellent interface for
+      dealing with code that spans multiple files: tags. First you need to
+      build a tags database using etags, then you have to tell Emacs to use the
+      tags file via M-x visit-tags-table. But once that's done, you can
+      navigate to the file containing the function right at your cursor with
+      M-. A very, VERY, useful feature for working with large projects.
+
+      You can compile, check syntax errors, and debug your code with gdb,
+      all from within Emacs. This provides a nice graphical interface to gdb
+      which allows you to set breakpoints from within the editor.
+
+      Emacs is completely extensible. You can customize it to create custom
+      editing commands to suit your specific needs. For example, I have have
+      editing commands that automatically create both opening and closing curly
+      braces when typed. I also have a custom command that wraps a region in an
+      if statement.
+
+      You can run the C preprossesor from within Emacs and look at the the
+      way your source code looks like after preprocessing (after all the
+      #includes are actually included). You can also move across preprocessor
+      conditionals, or hide code within preprocessor conditionals. You can hide
+      code based on indentation level to look at particularly long or
+      complicated functions.
+
+      Code can be folded up, just like in Visual Studio. Turn on
+      hs-minor-mode (HideShow mino mode) and then you can hide select elements
+      of your code to make your files more readable.
+    <section><heading>Note on Emacs Keys</heading><content><p xmlns="http://www.w3.org/1999/xhtml">In most Windows documentation you see keyboard shorcuts described as
+    thus: Ctrl+J, Ctrl+C, etc, etc. In Emacs we say the same things this way:
+    C-j, C-c, etc, etc. These shortcuts are also case sensitive, so C-C means
+    Ctrl+Shift+c. Also, in Emacs, there's an additional shortcut key used
+    called Meta. It's basically the Alt key, so M-p would mean Alt+p. If Alt
+    doesn't seem to work for you, you can press escape instead. You don't hold
+    down escape however. You press it once and then press the relevant shortcut
+    key.</p><p xmlns="http://www.w3.org/1999/xhtml">Emacs has so many commands that it isn't practical to fit them all on
+    keyboard shortcuts. For commands that aren't bound to keyboard shortcuts,
+    by default, these commands are referred by their names and can be typed out
+    and run. You press M-x and type the name of the command. You can press the
+    TAB key after typing part of a command, like you can in the shell, to
+    complete a partially typed command name. A useful command that isn't bound
+    to a key by default is the <em>compile</em> command, which is used to run
+    <em>make</em> and check for syntax errors. So to compile your program after
+    having written the Makefile you would type <em>M-x compile</em> and then
+    the enter key. Then you would press the enter key again to accept the
+    default compile command and let <em>make</em> do its thing. If make found
+    any errors, it will display them. You can then automatically skip to the
+    troublesome line in your code by pressing C-x ` (that's the quote mark on
+    the '~' key)</p></content></section>In most Windows documentation you see keyboard shorcuts described as
+    thus: Ctrl+J, Ctrl+C, etc, etc. In Emacs we say the same things this way:
+    C-j, C-c, etc, etc. These shortcuts are also case sensitive, so C-C means
+    Ctrl+Shift+c. Also, in Emacs, there's an additional shortcut key used
+    called Meta. It's basically the Alt key, so M-p would mean Alt+p. If Alt
+    doesn't seem to work for you, you can press escape instead. You don't hold
+    down escape however. You press it once and then press the relevant shortcut
+    key.Emacs has so many commands that it isn't practical to fit them all on
+    keyboard shortcuts. For commands that aren't bound to keyboard shortcuts,
+    by default, these commands are referred by their names and can be typed out
+    and run. You press M-x and type the name of the command. You can press the
+    TAB key after typing part of a command, like you can in the shell, to
+    complete a partially typed command name. A useful command that isn't bound
+    to a key by default is the compile command, which is used to run
+    make and check for syntax errors. So to compile your program after
+    having written the Makefile you would type M-x compile and then
+    the enter key. Then you would press the enter key again to accept the
+    default compile command and let make do its thing. If make found
+    any errors, it will display them. You can then automatically skip to the
+    troublesome line in your code by pressing C-x ` (that's the quote mark on
+    the '~' key)<section><heading>Starting Out</heading><content><p xmlns="http://www.w3.org/1999/xhtml">The first steps in Emacs are to learn the basics. Emacs has its own
+    bultin tutorial which is quite good. When you first start up Emacs, type
+    C-h t. This will open up the Emacs tutorial. The tutorial might seem
+    boring, but you'll be a better (wo)man for going through it. It'll give you
+    the <em>feel</em> of Emacs. After completing the tutorial you should be
+    able to open and close files, navigate files, move by words, sentences and
+    paragraphs, copy and paste text, search and replace text, and undo commands
+    (the most important command of all!). These are all the essential basics
+    and you won't survive long in Emacs without 'em, so <strong>do that
+    tutorial!</strong></p></content></section>The first steps in Emacs are to learn the basics. Emacs has its own
+    bultin tutorial which is quite good. When you first start up Emacs, type
+    C-h t. This will open up the Emacs tutorial. The tutorial might seem
+    boring, but you'll be a better (wo)man for going through it. It'll give you
+    the feel of Emacs. After completing the tutorial you should be
+    able to open and close files, navigate files, move by words, sentences and
+    paragraphs, copy and paste text, search and replace text, and undo commands
+    (the most important command of all!). These are all the essential basics
+    and you won't survive long in Emacs without 'em, so do that
+    tutorial!<section><heading>After the Tutorial</heading><content><p xmlns="http://www.w3.org/1999/xhtml">After going through the tutorial, try using my Emacs startup file. I've
+    configured my .emacs startup file to have the indentation style that Sean
+    wants for the ECS30 class. That means that hitting enter will autoindent
+    your code 2 spaces per indented block. Emacs is also smart and syntax aware
+    so you can press TAB any time while anywhere on a line and Emacs will
+    syntactically inspect the line and indent the line the way it's supposed to
+    be. If it doesn't seem to be indenting correctly, that means you've got a
+    syntax error and it's time to inspect your code.</p><p xmlns="http://www.w3.org/1999/xhtml">To copy my .emacs to your home folder, Execute the following on a shell
+    while in your home folder on CSIF:</p><pre xmlns="http://www.w3.org/1999/xhtml">
+cp -r ~petersos/.emacs ~petersos/insert .
+</pre><br xmlns="http://www.w3.org/1999/xhtml"/><br xmlns="http://www.w3.org/1999/xhtml"/><p xmlns="http://www.w3.org/1999/xhtml">Now start a project:</p><pre xmlns="http://www.w3.org/1999/xhtml">
+mkdir project
+cd project
+emacs project.c
+</pre><br xmlns="http://www.w3.org/1999/xhtml"/><br xmlns="http://www.w3.org/1999/xhtml"/><p xmlns="http://www.w3.org/1999/xhtml">This'll give you an Emacs which has been set to the proper indentation
+    for the class as well as the comment styles. I've also setup a template
+    that loads everytime you create a new file with .c at the end of the name.
+    The template will be in your home folder under insert/blank.c. Edit that
+    file to whatever you wish (you'll probably want to change my name to your
+    name :D).</p></content></section>After going through the tutorial, try using my Emacs startup file. I've
+    configured my .emacs startup file to have the indentation style that Sean
+    wants for the ECS30 class. That means that hitting enter will autoindent
+    your code 2 spaces per indented block. Emacs is also smart and syntax aware
+    so you can press TAB any time while anywhere on a line and Emacs will
+    syntactically inspect the line and indent the line the way it's supposed to
+    be. If it doesn't seem to be indenting correctly, that means you've got a
+    syntax error and it's time to inspect your code.To copy my .emacs to your home folder, Execute the following on a shell
+    while in your home folder on CSIF:
+cp -r ~petersos/.emacs ~petersos/insert .
+Now start a project:
+mkdir project
+cd project
+emacs project.c
+This'll give you an Emacs which has been set to the proper indentation
+    for the class as well as the comment styles. I've also setup a template
+    that loads everytime you create a new file with .c at the end of the name.
+    The template will be in your home folder under insert/blank.c. Edit that
+    file to whatever you wish (you'll probably want to change my name to your
+    name :D).<section><heading>Auto-saving and Recovering Files</heading><content><p xmlns="http://www.w3.org/1999/xhtml">Emacs auto-saves files as you write them. That way, if you get
+    disconnected from CSIF, or if Emacs crashes for any reason, you can try and
+    recover any work you lost. Launch emacs after a crash or a disconnect and
+    type M-x recover-session. You'll be put in a screen which has a list of
+    session files, with your cursor on the most recent one. Press C-c C-c to
+    attempt an auto-recovery. If there were no auto-save files to be recovered
+    then nothing will happen (which probably means everything was saved before
+    the crash) but if there are, Emacs will ask you if you want to auto-recover
+    any of these files. This has been vastly life saving for me in the
+    past.</p><p xmlns="http://www.w3.org/1999/xhtml">Also, Emacs saves a backup of every file you've worked on. It does this
+    by saving a file with the same name but with a '~' append to the filename.
+    So the backup of diary.txt would be <em>diary.txt~</em>. The backup is the
+    exact version of the file before you started editing it with Emacs, so no
+    matter how many times you save the file in your current session, this file
+    will always be the <em>last version</em> of your file. Some people find
+    this behavior annoying since it litters your folders with lots of extra
+    files. However, it's a feature that's saved my bacon more than a few times,
+    so you may want to think about keeping it on. If it's just simply too
+    annoying, however, I've left the instructions on how to disable the feature
+    in my .emacs file.</p></content></section>Emacs auto-saves files as you write them. That way, if you get
+    disconnected from CSIF, or if Emacs crashes for any reason, you can try and
+    recover any work you lost. Launch emacs after a crash or a disconnect and
+    type M-x recover-session. You'll be put in a screen which has a list of
+    session files, with your cursor on the most recent one. Press C-c C-c to
+    attempt an auto-recovery. If there were no auto-save files to be recovered
+    then nothing will happen (which probably means everything was saved before
+    the crash) but if there are, Emacs will ask you if you want to auto-recover
+    any of these files. This has been vastly life saving for me in the
+    past.Also, Emacs saves a backup of every file you've worked on. It does this
+    by saving a file with the same name but with a '~' append to the filename.
+    So the backup of diary.txt would be diary.txt~. The backup is the
+    exact version of the file before you started editing it with Emacs, so no
+    matter how many times you save the file in your current session, this file
+    will always be the last version of your file. Some people find
+    this behavior annoying since it litters your folders with lots of extra
+    files. However, it's a feature that's saved my bacon more than a few times,
+    so you may want to think about keeping it on. If it's just simply too
+    annoying, however, I've left the instructions on how to disable the feature
+    in my .emacs file.<section><heading>Compairing Output</heading><content><p xmlns="http://www.w3.org/1999/xhtml">Emacs can run a shell from inside itself. This is useful if you wish to
+    compare command output. Below is an example of how to compare the sine
+    program output with Sean's version.</p><ol xmlns="http://www.w3.org/1999/xhtml">
+      <li><strong>Start a shell:</strong> Type M-x shell RET to enter a command
+      shell.</li>
+
+      <li><strong>Run your program</strong></li>
+
+      <li><strong>Run Sean's program</strong></li>
+
+      <li><strong>Split the Window Vertically</strong></li>
+
+      <li><strong>Line the Output Up</strong></li>
+    </ol><br xmlns="http://www.w3.org/1999/xhtml"/><br xmlns="http://www.w3.org/1999/xhtml"/></content></section>Emacs can run a shell from inside itself. This is useful if you wish to
+    compare command output. Below is an example of how to compare the sine
+    program output with Sean's version.
+      Start a shell: Type M-x shell RET to enter a command
+      shell.
+
+      Run your program
+
+      Run Sean's program
+
+      Split the Window Vertically
+
+      Line the Output Up
+    <section><heading>Reading Newsgroups</heading><content><p xmlns="http://www.w3.org/1999/xhtml">You can read the ecs30 newsgroup from within Emacs. Press M-x gnus RET
+    while in Emacs. This will launch Emacs' news reader Gnus. The first thing
+    you'll need to do is subscribe to the ucd.class.ecs30.sec-a.d newsgroup.
+    Press U (capital U) and type in the newsgroup name (or copy and paste) and
+    hit return.</p><p xmlns="http://www.w3.org/1999/xhtml">You can then read the newsgroup by moving the cursor via the arrow keys
+    to the newsgroup name and hitting enter. This will bring you to the
+    threaded summary display for the newsgroup. Move the cursor to the subject
+    you want to read hit and hit SPACE. To reply (or Follow-up to use old
+    Usenet speak) press "f". To respond via email, use "r". While composing
+    your reply press, C-c C-y to quote the original author. If your paragraphs
+    don't seem to be wrapping correctly, press "M-q" to fill them. To simply
+    post a new thread, press "a" while in the summary display. Press "q" to
+    close the summary display. Press "q" again to quit Gnus. If you want to
+    revisit a newsgroup and read its old artcles (articles you've already read)
+    Use C-u RET to enter the newsgroup instead of just RET.</p></content></section>You can read the ecs30 newsgroup from within Emacs. Press M-x gnus RET
+    while in Emacs. This will launch Emacs' news reader Gnus. The first thing
+    you'll need to do is subscribe to the ucd.class.ecs30.sec-a.d newsgroup.
+    Press U (capital U) and type in the newsgroup name (or copy and paste) and
+    hit return.You can then read the newsgroup by moving the cursor via the arrow keys
+    to the newsgroup name and hitting enter. This will bring you to the
+    threaded summary display for the newsgroup. Move the cursor to the subject
+    you want to read hit and hit SPACE. To reply (or Follow-up to use old
+    Usenet speak) press "f". To respond via email, use "r". While composing
+    your reply press, C-c C-y to quote the original author. If your paragraphs
+    don't seem to be wrapping correctly, press "M-q" to fill them. To simply
+    post a new thread, press "a" while in the summary display. Press "q" to
+    close the summary display. Press "q" again to quit Gnus. If you want to
+    revisit a newsgroup and read its old artcles (articles you've already read)
+    Use C-u RET to enter the newsgroup instead of just RET.<section><heading>Emacs at Home</heading><content><p xmlns="http://www.w3.org/1999/xhtml">Of course, using Emacs by ssh to the CSIF can be a pain, notably, you
+    need Internet access and we all know how that goes! The day before the due
+    date on the next program, WHAM! No more Internet access! Well the good news
+    is, Emacs runs on Windows and Mac OS X too. In fact, if you have Mac OS X,
+    you already have a copy of Emacs! A stripped-down version that only runs in
+    Terminal.app, but a full fledged copy none-the-less. If you want a more
+    substantial copy, look no further than Apple's own web site, where they
+    distribute a copy of Carbon Emacs, a souped up version of Emacs with all of
+    Mac OS X's bells and whistles. The address is here: <a href="http://homepage.mac.com/zenitani/emacs-e.html">http://homepage.mac.com/zenitani/emacs-e.html</a>
+    You'll need either Mac OS 10.3 or 10.4. There are seperate versions for
+    each.</p><p xmlns="http://www.w3.org/1999/xhtml">Windows users have two options available to them. One is to get the
+    official GNU Emacs binary from gnu.org's site. It's located at <a href="ftp://ftp.gnu.org/gnu/emacs/windows/">ftp://ftp.gnu.org/gnu/emacs/windows/</a>.
+    Painfully enough, these are simple gzipped tarballs of the binaries and
+    they're spanned over several different packages. There's no installation
+    routine, so you have to do the setup yourself, such as where you want to
+    put it, whether or not you want a shorcut on the desktop or the start menu,
+    etc, etc. And we all know that's pretty yucky.</p><p xmlns="http://www.w3.org/1999/xhtml">Fortunately, there's more recent unofficial builds of Emacs complete
+    with installers located at <a href="http://ntemacs.sourceforge.net/">http://ntemacs.sourceforge.net/</a>.</p><p xmlns="http://www.w3.org/1999/xhtml">A few notes for windows users. Windows is very un-unixy, so certain
+    features of Emacs are likely to not work very well unless you also install
+    cygwin and make sure the cygwin binaries are within your PATH environment
+    variable. This is something that can be set from the Properties dialog on
+    the <em>My Computer</em> right-click menu.</p></content></section>Of course, using Emacs by ssh to the CSIF can be a pain, notably, you
+    need Internet access and we all know how that goes! The day before the due
+    date on the next program, WHAM! No more Internet access! Well the good news
+    is, Emacs runs on Windows and Mac OS X too. In fact, if you have Mac OS X,
+    you already have a copy of Emacs! A stripped-down version that only runs in
+    Terminal.app, but a full fledged copy none-the-less. If you want a more
+    substantial copy, look no further than Apple's own web site, where they
+    distribute a copy of Carbon Emacs, a souped up version of Emacs with all of
+    Mac OS X's bells and whistles. The address is here: http://homepage.mac.com/zenitani/emacs-e.html
+    You'll need either Mac OS 10.3 or 10.4. There are seperate versions for
+    each.Windows users have two options available to them. One is to get the
+    official GNU Emacs binary from gnu.org's site. It's located at ftp://ftp.gnu.org/gnu/emacs/windows/.
+    Painfully enough, these are simple gzipped tarballs of the binaries and
+    they're spanned over several different packages. There's no installation
+    routine, so you have to do the setup yourself, such as where you want to
+    put it, whether or not you want a shorcut on the desktop or the start menu,
+    etc, etc. And we all know that's pretty yucky.Fortunately, there's more recent unofficial builds of Emacs complete
+    with installers located at http://ntemacs.sourceforge.net/.A few notes for windows users. Windows is very un-unixy, so certain
+    features of Emacs are likely to not work very well unless you also install
+    cygwin and make sure the cygwin binaries are within your PATH environment
+    variable. This is something that can be set from the Properties dialog on
+    the My Computer right-click menu.<section><heading>More to Come</heading><content><p xmlns="http://www.w3.org/1999/xhtml">I've barely scratched the surface. Hopefully this'll get you started. If
+    not, there's always Emacs' builtin documentation. Type C-h i m Emacs RET.
+    This will put you in the info buffer where you can read the entire
+    dead-tree version of the Emacs manual for free. Also, Norman Matloff seems
+    to keep a pretty good page about Emacs at <a href="http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/Emacs.html">http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/Emacs.html</a>.
+    If you have questions about Emacs I love to answer them! Send email to my
+    address below. Thanks a bunch.</p></content></section>I've barely scratched the surface. Hopefully this'll get you started. If
+    not, there's always Emacs' builtin documentation. Type C-h i m Emacs RET.
+    This will put you in the info buffer where you can read the entire
+    dead-tree version of the Emacs manual for free. Also, Norman Matloff seems
+    to keep a pretty good page about Emacs at http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/Emacs.html.
+    If you have questions about Emacs I love to answer them! Send email to my
+    address below. Thanks a bunch.</test-reformat>
